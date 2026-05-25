@@ -1,0 +1,123 @@
+/*******************************************************************************
+ * Pygments / Rouge syntax highlighting
+ * Token colors come from CSS custom properties defined in _themes.scss.
+ * Spec: https://draculatheme.com/spec
+ ******************************************************************************/
+
+.highlight pre {
+  background-color: var(--pygments-bg);
+}
+
+.highlight .hll {
+  background-color: var(--pygments-line-highlight);
+}
+
+.highlight .c,
+.highlight .cm,
+.highlight .cp,
+.highlight .c1,
+.highlight .cs,
+.highlight .sd {
+  color: var(--pygments-comment);
+  font-style: italic;
+}
+
+.highlight .err,
+.highlight .gd,
+.highlight .gr,
+.highlight .gt {
+  color: var(--pygments-error);
+}
+
+.highlight .k,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .nt,
+.highlight .ow {
+  color: var(--pygments-keyword);
+}
+
+.highlight .kt,
+.highlight .nc,
+.highlight .ne,
+.highlight .gu,
+.highlight .sr {
+  color: var(--pygments-class);
+}
+
+.highlight .nd {
+  color: var(--pygments-class);
+  font-style: italic;
+}
+
+.highlight .nf,
+.highlight .gi {
+  color: var(--pygments-function);
+}
+
+.highlight .ld,
+.highlight .s,
+.highlight .na,
+.highlight .sb,
+.highlight .sc,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .s1,
+.highlight .ss {
+  color: var(--pygments-string);
+}
+
+.highlight .m,
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo,
+.highlight .no,
+.highlight .il {
+  color: var(--pygments-number);
+}
+
+.highlight .nb,
+.highlight .bp {
+  color: var(--pygments-builtin);
+  font-style: italic;
+}
+
+.highlight .g,
+.highlight .l,
+.highlight .n,
+.highlight .o,
+.highlight .x,
+.highlight .p,
+.highlight .ge,
+.highlight .gh,
+.highlight .gs,
+.highlight .ni,
+.highlight .nl,
+.highlight .nn,
+.highlight .nx,
+.highlight .py,
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi,
+.highlight .w,
+.highlight .go,
+.highlight .gp {
+  color: var(--pygments-fg);
+}
+
+.highlight .gh,
+.highlight .gs {
+  font-weight: bold;
+}
+
+.highlight .ge {
+  font-style: italic;
+}

@@ -4,7 +4,7 @@
 
 title: Richard Li Portfolio # the website title (if blank, full name will be used instead)
 first_name: Richard
-middle_name: H.
+middle_name:
 last_name: Li
 contact_note: >
   Shoot me an email!
@@ -63,13 +63,13 @@ profile_sidebar:
   enabled: true
   image: prof_pic.jpg
   image_circular: false
-  title: Engineer · Builder · Tinkerer
-  location: Update your city and state
+  title: ML Engineer · Firmware Tinkerer · EE Builder
+  location: West Lafayette, Indiana
   website: https://richardhcli.com
-  email: you@example.com
-  github_username: your-github-username
-  linkedin_username: your-linkedin-username
-  cv_pdf: /assets/pdf/example_pdf.pdf
+  email: richardhcli@gmail.com
+  github_username: richardhcli
+  linkedin_username: richardhcli
+  cv_pdf: /assets/pdf/Richard_Li_Resume.pdf
 
 # Dimensions
 max_width: 1100px

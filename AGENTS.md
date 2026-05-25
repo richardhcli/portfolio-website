@@ -32,7 +32,8 @@ What is the best way to do this?
 - **Writing documentation?** → See [`.github/agents/docs.agent.md`](.github/agents/docs.agent.md)
 - **Need setup/deployment help?** → [INSTALL.md](INSTALL.md)
 - **Troubleshooting & FAQ?** → [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-- **Customization & theming?** → [CUSTOMIZE.md](CUSTOMIZE.md)
+- **Customization?** → [CUSTOMIZE.md](CUSTOMIZE.md)
+- **Color theming?** → [THEMING.md](THEMING.md) (color pipeline)
 - **Quick 5-min start?** → [QUICKSTART.md](QUICKSTART.md)
 
 ## Essential Commands

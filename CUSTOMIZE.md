@@ -790,7 +790,18 @@ You can implement your own buttons by editing the [\_layouts/bib.liquid](_layout
 
 ## Changing theme color
 
-A variety of beautiful theme colors have been selected for you to choose from. The default is purple, but you can quickly change it by editing the `--global-theme-color` variable in the [\_sass/\_themes.scss](_sass/_themes.scss) file. Other color variables are listed there as well. The stock theme color options available can be found at [\_sass/\_variables.scss](_sass/_variables.scss). You can also add your own colors to this file assigning each a name for ease of use across the template.
+This site uses the **Dracula / Alucard** palette. All colors share one pipeline — see **[THEMING.md](THEMING.md)** for the full guide (recommended for agents and non-designers).
+
+**Quick summary:**
+
+1. Edit hex tokens in [`_sass/_variables.scss`](_sass/_variables.scss).
+2. Runtime colors are exposed as CSS variables in [`_sass/_themes.scss`](_sass/_themes.scss) (`--global-*` for UI, `--pygments-*` for code blocks).
+3. Syntax highlighting lives in [`_sass/_pygments.scss`](_sass/_pygments.scss) and is bundled into `main.css` (no separate pygments CSS files).
+4. Toggle light/dark with `enable_darkmode: true` in [`_config.yml`](_config.yml); first visit defaults to dark mode.
+
+Do **not** hardcode hex in component partials — use `var(--global-theme-color)` and related variables.
+
+See **[THEMING.md](THEMING.md)** for the complete color pipeline, file map, and syntax-token reference.
 
 ## Customizing layout and UI
 
@@ -1207,7 +1218,7 @@ The `_sass/` directory contains specialized SCSS files organized by feature and 
 
 - **Typography:** Edit `_typography.scss` to change fonts, heading styles, links, tables, and blockquotes.
 - **Navigation:** Edit `_navbar.scss` to customize the navigation bar and dropdown menus.
-- **Colors and themes:** Edit `_themes.scss` to change theme colors and `_variables.scss` for global variables.
+- **Colors and themes:** Edit `_variables.scss` (hex tokens), `_themes.scss` (CSS variables), `_pygments.scss` (syntax). See [THEMING.md](../../THEMING.md).
 - **Blog styles:** Edit `_blog.scss` to customize blog post listings, tags, and pagination.
 - **Publications:** Edit `_publications.scss` to modify bibliography and publication display styles.
 - **Components:** Edit `_components.scss` to customize reusable components like cards, profiles, and projects.

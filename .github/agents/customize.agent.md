@@ -251,10 +251,13 @@ profile_sidebar:
 
 ### 9. Theme Colors
 
-**Files:** `_sass/_themes.scss`, `_sass/_variables.scss`
+**Files:** `_sass/_variables.scss`, `_sass/_themes.scss`, `_sass/_pygments.scss`
 
-- Change `--global-theme-color` variable in `_sass/_themes.scss`
-- Available theme colors defined in `_sass/_variables.scss`
+See **[THEMING.md](../../THEMING.md)** for the full color pipeline. Summary:
+
+- Edit hex in `_variables.scss` only
+- `_themes.scss` maps tokens to `--global-*` and `--pygments-*` CSS variables
+- Light = Alucard, dark = Dracula; syntax highlighting switches with `data-theme` (no separate CSS files)
 - Enable/disable dark mode in `_config.yml` (`enable_darkmode`)
 
 ### 10. GitHub Repositories Display
@@ -528,7 +531,7 @@ Help users avoid these frequent errors:
 | Add blog post           | `_posts/YYYY-MM-DD-title.md`                                        | CUSTOMIZE.md § Blog posts          |
 | Create project          | `_projects/name.md`                                                 | CUSTOMIZE.md § Projects            |
 | Add news item           | `_news/announcement.md`                                             | CUSTOMIZE.md § Adding news         |
-| Change theme color      | `_sass/_themes.scss`                                                | CUSTOMIZE.md § Theme color         |
+| Change theme color      | `_sass/_variables.scss`, `_sass/_themes.scss`                       | THEMING.md                         |
 | Add social links        | `_data/socials.yml`                                                 | CUSTOMIZE.md § Social media        |
 | Set up analytics        | `_config.yml`                                                       | CUSTOMIZE.md & ANALYTICS.md        |
 | Enable/disable features | `_config.yml`                                                       | CUSTOMIZE.md § Configuration       |

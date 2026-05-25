@@ -1,0 +1,68 @@
+/*******************************************************************************
+ * Transient hover/click feedback for titles and chrome (Option A).
+ * Hover: Dracula pink. Click: cyan flash, then blue until reload.
+ ******************************************************************************/
+
+@use "variables" as v;
+
+$interactive-chrome-selectors: (
+  ".navbar-brand.title",
+  ".post-title",
+  ".header-bar h1",
+  ".card-title",
+  ".profile-sidebar__name",
+  "#search-toggle",
+  ".search-toggle-mobile",
+  "main h1",
+  "main h2",
+  "main h3",
+  "main h4",
+  "main h5",
+  "main h6"
+);
+
+@each $selector in $interactive-chrome-selectors {
+  #{$selector} {
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--global-hover-color);
+    }
+
+    &.click-flash {
+      color: var(--global-click-flash-color);
+    }
+
+    &.click-active {
+      color: var(--global-theme-color);
+    }
+
+    &.click-active:hover {
+      color: var(--global-hover-color);
+    }
+  }
+}
+
+#search-toggle,
+.search-toggle-mobile {
+  .nav-link {
+    color: inherit;
+    transition: color 0.15s ease;
+  }
+
+  &:hover {
+    color: var(--global-hover-color);
+  }
+
+  &.click-flash {
+    color: var(--global-click-flash-color);
+  }
+
+  &.click-active {
+    color: var(--global-theme-color);
+  }
+
+  &.click-active:hover {
+    color: var(--global-hover-color);
+  }
+}

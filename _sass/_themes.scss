@@ -14,6 +14,7 @@
   --global-theme-color: #{v.$dracula-functional-cyan};
   --global-hover-color: #{v.$alucard-pink};
   --global-hover-text-color: #{v.$alucard-bg};
+  --global-click-flash-color: #{v.$dracula-cyan};
   --global-footer-bg-color: #{v.$alucard-ui-bg-dark};
   --global-footer-text-color: #{v.$alucard-fg};
   --global-footer-link-color: #{v.$dracula-functional-cyan};
@@ -46,6 +47,18 @@
   --global-danger-block-bg: rgba(222, 87, 53, 0.12);
   --global-danger-block-text: #{v.$alucard-red};
   --global-danger-block-title: #{v.$dracula-functional-red};
+
+  --pygments-bg: #{v.$alucard-bg};
+  --pygments-line-highlight: #{v.$alucard-current-line-fallback};
+  --pygments-fg: #{v.$alucard-fg};
+  --pygments-comment: #{v.$alucard-comment};
+  --pygments-keyword: #{v.$alucard-pink};
+  --pygments-function: #{v.$alucard-green};
+  --pygments-class: #{v.$alucard-cyan};
+  --pygments-string: #{v.$alucard-yellow};
+  --pygments-number: #{v.$alucard-orange};
+  --pygments-error: #{v.$alucard-red};
+  --pygments-builtin: #{v.$alucard-purple};
 
   #light-toggle-dark {
     display: inline-block;
@@ -83,6 +96,7 @@ html[data-theme="dark"] {
   --global-theme-color: #{v.$dracula-functional-cyan};
   --global-hover-color: #{v.$dracula-pink};
   --global-hover-text-color: #{v.$dracula-bg};
+  --global-click-flash-color: #{v.$dracula-cyan};
   --global-footer-bg-color: #{v.$dracula-ui-bg-dark};
   --global-footer-text-color: #{v.$dracula-fg};
   --global-footer-link-color: #{v.$dracula-cyan};
@@ -114,6 +128,18 @@ html[data-theme="dark"] {
   --global-danger-block-bg: rgba(222, 87, 53, 0.2);
   --global-danger-block-text: #{v.$dracula-red};
   --global-danger-block-title: #{v.$dracula-red};
+
+  --pygments-bg: #{v.$dracula-bg};
+  --pygments-line-highlight: #{v.$dracula-current-line-fallback};
+  --pygments-fg: #{v.$dracula-fg};
+  --pygments-comment: #{v.$dracula-comment};
+  --pygments-keyword: #{v.$dracula-pink};
+  --pygments-function: #{v.$dracula-green};
+  --pygments-class: #{v.$dracula-cyan};
+  --pygments-string: #{v.$dracula-yellow};
+  --pygments-number: #{v.$dracula-orange};
+  --pygments-error: #{v.$dracula-red};
+  --pygments-builtin: #{v.$dracula-purple};
 
   .only-light {
     display: none;

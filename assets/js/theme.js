@@ -20,7 +20,6 @@ let applyTheme = () => {
   let theme = determineComputedTheme();
 
   transTheme();
-  setHighlight(theme);
   setGiscusTheme(theme);
   setSearchTheme(theme);
   setCookieConsentTheme(theme);
@@ -81,16 +80,6 @@ let applyTheme = () => {
     medium_zoom.update({
       background: getComputedStyle(document.documentElement).getPropertyValue("--global-bg-color") + "ee", // + 'ee' for trasparency.
     });
-  }
-};
-
-let setHighlight = (theme) => {
-  if (theme == "dark") {
-    document.getElementById("highlight_theme_light").media = "none";
-    document.getElementById("highlight_theme_dark").media = "";
-  } else {
-    document.getElementById("highlight_theme_dark").media = "none";
-    document.getElementById("highlight_theme_light").media = "";
   }
 };
 
