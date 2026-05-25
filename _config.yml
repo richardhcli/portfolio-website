@@ -210,6 +210,10 @@ exclude:
   - README.md
   - readme_preview/
   - vendor
+  # Copy-paste starter templates (not rendered)
+  - _posts/_TEMPLATE.md
+  - _projects/_TEMPLATE.md
+  - _news/_TEMPLATE.md
 keep_files:
   - CNAME
   - .nojekyll
