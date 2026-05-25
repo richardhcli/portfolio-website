@@ -1,0 +1,90 @@
+{% assign sidebar = site.profile_sidebar %}
+<aside class="profile-sidebar" aria-label="Profile">
+  <div class="profile-sidebar__inner">
+    {% if sidebar.image %}
+      {% assign profile_image_path = sidebar.image | prepend: 'assets/img/' %}
+      {% if sidebar.image_circular %}
+        {% assign profile_image_class = 'profile-sidebar__avatar img-fluid rounded-circle' %}
+      {% else %}
+        {% assign profile_image_class = 'profile-sidebar__avatar img-fluid rounded' %}
+      {% endif %}
+      {% capture sizes %}240px{% endcapture %}
+      {% capture profile_name -%}
+        {{- site.first_name -}}
+        {%- if site.middle_name %} {{ site.middle_name }}{% endif -%}
+        {{- site.last_name -}}
+      {%- endcapture %}
+      <div class="profile-sidebar__photo">
+        {%
+          include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=profile_name
+          cache_bust=true
+        %}
+      </div>
+    {% endif %}
+
+    <div class="profile-sidebar__identity">
+      <h2 class="profile-sidebar__name">{{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}</h2>
+      {% if sidebar.title %}
+        <p class="profile-sidebar__title">{{ sidebar.title }}</p>
+      {% endif %}
+    </div>
+
+    <ul class="profile-sidebar__contact">
+      {% if sidebar.location %}
+        <li class="profile-sidebar__contact-item">
+          <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+          <span class="profile-sidebar__contact-label">{{ sidebar.location }}</span>
+        </li>
+      {% endif %}
+
+      {% if sidebar.website %}
+        <li class="profile-sidebar__contact-item">
+          <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="fa-solid fa-link"></i></span>
+          <a class="profile-sidebar__contact-label" href="{{ sidebar.website }}" target="_blank" rel="noopener noreferrer">Website</a>
+        </li>
+      {% endif %}
+
+      {% if sidebar.email %}
+        <li class="profile-sidebar__contact-item">
+          <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+          <a class="profile-sidebar__contact-label" href="mailto:{{ sidebar.email | encode_email }}">Email</a>
+        </li>
+      {% endif %}
+
+      {% if sidebar.github_username %}
+        <li class="profile-sidebar__contact-item">
+          <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
+          <a class="profile-sidebar__contact-label" href="https://github.com/{{ sidebar.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </li>
+      {% endif %}
+
+      {% if sidebar.linkedin_username %}
+        <li class="profile-sidebar__contact-item">
+          <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="fa-brands fa-linkedin"></i></span>
+          <a
+            class="profile-sidebar__contact-label"
+            href="https://www.linkedin.com/in/{{ sidebar.linkedin_username }}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </li>
+      {% endif %}
+
+      {% if sidebar.cv_pdf %}
+        <li class="profile-sidebar__contact-item">
+          <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="ai ai-cv"></i></span>
+          <a
+            class="profile-sidebar__contact-label"
+            href="{% if sidebar.cv_pdf contains '://' %}{{ sidebar.cv_pdf }}{% else %}{{ sidebar.cv_pdf | relative_url }}{% endif %}"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CV
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+</aside>

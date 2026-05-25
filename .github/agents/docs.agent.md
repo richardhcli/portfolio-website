@@ -15,16 +15,16 @@ You are a documentation specialist for the al-folio Jekyll theme project.
 ## Project knowledge
 
 - **Tech Stack:** Jekyll 4.x (Ruby-based static site generator), Liquid templating, YAML configuration, SCSS/CSS, JavaScript, Docker
-- **Key Dependencies:** jekyll-scholar, jekyll-archives-v2, jekyll-paginate-v2, MathJax, Bootstrap, Prettier, pre-commit hooks
+- **Key Dependencies:** jekyll-archives-v2, jekyll-paginate-v2, MathJax, Bootstrap, Prettier, pre-commit hooks
 - **File Structure:**
   - `_config.yml` – Main Jekyll configuration file
-  - `*.md` (root) – Documentation files: `README.md`, `INSTALL.md`, `CUSTOMIZE.md`, `FAQ.md`, `CONTRIBUTING.md`, `QUICKSTART.md`, `ANALYTICS.md`, `SEO.md`, `TROUBLESHOOTING.md`
-  - `_pages/` – Website pages (Markdown with frontmatter)
+  - `*.md` (root) – Documentation files
+  - `_pages/` – Website pages (About, Blog, Projects, CV)
   - `_posts/` – Blog posts
-  - `_projects/`, `_news/`, `_books/`, `_teachings/` – Jekyll collections
+  - `_projects/`, `_news/` – Jekyll collections
   - `_layouts/` – Liquid layouts for different page types
   - `_includes/` – Liquid template components:
-    - `_includes/cv/` – Unified CV component renderers (awards, education, experience, skills, languages, certificates, references, projects, interests, publications, etc.)
+    - `_includes/cv/` – Unified CV component renderers
     - `_includes/repository/` – Repository display components
     - Core includes: header, footer, metadata, scripts, etc.
   - `_sass/` – SCSS stylesheets
@@ -32,11 +32,7 @@ You are a documentation specialist for the al-folio Jekyll theme project.
     - `cv.yml` – CV/resume in RenderCV format
     - `socials.yml` – Social media links
     - `repositories.yml` – GitHub repositories
-    - `coauthors.yml` – Coauthor information
-    - `venues.yml` – Publication venue abbreviations
-    - `citations.yml` – Citation metrics
-  - `_plugins/` – Custom Jekyll plugins for extended functionality
-  - `_bibliography/` – BibTeX files for publications
+  - `_plugins/` – Custom Jekyll plugins
   - `assets/` – Static assets:
     - `assets/json/` – JSON files (resume.json in JSONResume format, table_data.json)
     - `assets/rendercv/` – RenderCV configuration files and generated PDFs
@@ -106,7 +102,7 @@ You are a documentation specialist for the al-folio Jekyll theme project.
 
 - `ANALYTICS.md` – Analytics and tracking configuration options
 - `CONTRIBUTING.md` – Guidelines for contributors and development
-- `CUSTOMIZE.md` – Comprehensive customization guide (configuration, adding content, styling, CV management, publications)
+- `CUSTOMIZE.md` – Comprehensive customization guide (configuration, adding content, styling, CV management)
 - `FAQ.md` – Frequently asked questions and common issues
 - `INSTALL.md` – Installation and deployment instructions (Docker, GitHub Pages, local setup, upgrading)
 - `QUICKSTART.md` – Get started in 5 minutes (repository setup, personalization, deployment)
@@ -126,8 +122,7 @@ This repository includes custom instruction files to enhance GitHub Copilot's ef
 
 - `.github/instructions/liquid-templates.instructions.md` (applies to `**/*.liquid`) – Guidance for Liquid templating, common patterns, validation, and testing
 - `.github/instructions/yaml-configuration.instructions.md` (applies to `_config.yml,_data/**/*.yml`) – Guidance for YAML syntax, feature flags, BibTeX keywords, and configuration best practices
-- `.github/instructions/bibtex-bibliography.instructions.md` (applies to `**/*.bib,_bibliography/**`) – Guidance for BibTeX entry syntax, custom keywords, field specifications, and publication frontmatter
-- `.github/instructions/markdown-content.instructions.md` (applies to content collections) – Guidance for creating content in `_books/`, `_news/`, `_pages/`, `_posts/`, `_projects/`, and `_teachings/` with appropriate frontmatter and formatting
+- `.github/instructions/markdown-content.instructions.md` (applies to content collections) – Guidance for creating content in `_news/`, `_pages/`, `_posts/`, and `_projects/`
 - `.github/instructions/javascript-scripts.instructions.md` (applies to `_scripts/**/*.js`) – Guidance for JavaScript and Liquid+JavaScript hybrid files, ES6 patterns, and script debugging
 
 **Environment Setup:**
@@ -174,11 +169,6 @@ For academics and non-technical readers, explain these terms briefly on first us
 - **Collection** – A group of similar content items. al-folio uses collections for `_posts/` (blog posts), `_projects/`, `_news/`, etc.
 - **Repository** – The folder containing all your website code and content. Stored on GitHub for version control and deployment.
 - **Deployment** – The process of publishing your site so it's accessible on the internet (via GitHub Pages or other hosting).
-
-**Publication-Related:**
-
-- **BibTeX** – A standardized format for storing publication metadata (title, authors, year, etc.). Used in `_bibliography/papers.bib`.
-- **Publication frontmatter** – Custom fields you add to BibTeX entries (like `pdf:`, `code:`, `slides:`) to add extra links and features to your publications page.
 
 **When to explain:** If a document uses a technical term that readers might not know, briefly explain it in parentheses or a footnote the first time it appears:
 

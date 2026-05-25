@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<div class="post">
+  <header class="post-header">
+    {% if page.subtitle %}
+      <p class="desc mb-0">{{ page.subtitle }}</p>
+    {% endif %}
+  </header>
+
+  <article>
+    <p class="about-page-link mt-0 mb-4">
+      <a href="{{ '/about/' | relative_url }}">More about me &rarr;</a>
+    </p>
+
+    {% if page.featured_project and page.featured_project.enabled %}
+      {% include featured_project.liquid %}
+    {% endif %}
+
+    <div class="clearfix">{{ content }}</div>
+
+    {% if page.latest_posts and page.latest_posts.enabled %}
+      <h2>
+        <a href="{{ '/blog/' | relative_url }}" style="color: inherit">latest posts</a>
+      </h2>
+      {% include latest_posts.liquid %}
+    {% endif %}
+  </article>
+</div>

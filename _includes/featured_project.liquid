@@ -1,0 +1,23 @@
+{% assign pinned_projects = site.projects | where: 'pinned', true %}
+{% if pinned_projects.size > 0 %}
+  {% assign featured_project = pinned_projects | sort: 'importance' | last %}
+{% else %}
+  {% assign featured_project = site.projects | sort: 'importance' | last %}
+{% endif %}
+
+{% if featured_project %}
+  <section class="featured-project mt-4 mb-4">
+    <h2>
+      <a href="{{ '/projects/' | relative_url }}" style="color: inherit">featured project</a>
+    </h2>
+    <div class="row row-cols-1">
+      <div class="col">
+        {% assign project = featured_project %}
+        {% include projects.liquid %}
+      </div>
+    </div>
+    <p class="mt-3">
+      <a href="{{ '/projects/' | relative_url }}">View all projects &rarr;</a>
+    </p>
+  </section>
+{% endif %}

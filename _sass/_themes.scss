@@ -10,8 +10,8 @@
   --global-code-bg-color: #{v.$code-bg-color-light};
   --global-text-color: #{v.$black-color};
   --global-text-color-light: #{v.$grey-color};
-  --global-theme-color: #{v.$purple-color};
-  --global-hover-color: #{v.$purple-color};
+  --global-theme-color: #{v.$blue-color};
+  --global-hover-color: #{v.$blue-color};
   --global-hover-text-color: #{v.$white-color};
   --global-footer-bg-color: #{v.$grey-color-dark};
   --global-footer-text-color: #{v.$grey-color-light};
@@ -29,6 +29,9 @@
   --global-back-to-top-text-color: #{v.$white-color};
   --global-newsletter-bg-color: #{v.$white-color};
   --global-newsletter-text-color: #{v.$black-color};
+  --global-nav-highlight-bg: #{v.$orange-color-light};
+  --global-nav-highlight-bg-hover: #{color.adjust(v.$orange-color, $lightness: 35%)};
+  --global-nav-highlight-text: #{v.$grey-900};
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #e2f5ec;
@@ -98,6 +101,9 @@ html[data-theme="dark"] {
   --global-back-to-top-text-color: #{v.$black-color};
   --global-newsletter-bg-color: #{v.$grey-color-light};
   --global-newsletter-text-color: #{v.$grey-color-dark};
+  --global-nav-highlight-bg: #{color.adjust(v.$orange-color, $lightness: -25%)};
+  --global-nav-highlight-bg-hover: #{color.adjust(v.$orange-color, $lightness: -15%)};
+  --global-nav-highlight-text: #{v.$white-color};
 
   --global-tip-block: #42b983;
   --global-tip-block-bg: #215d42;

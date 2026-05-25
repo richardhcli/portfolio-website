@@ -2,11 +2,11 @@
 
 ## Repository Overview
 
-**al-folio** is a simple, clean, and responsive [Jekyll](https://jekyllrb.com/) theme for academics and researchers. It enables users to create professional portfolio and blog websites with minimal configuration. The repository serves both as a template and as a reference implementation.
+**Richard Li Portfolio** is a Jekyll portfolio site (forked from [al-folio](https://github.com/alshedivat/al-folio)). It focuses on projects, blog posts, about, and CV — publications, teaching, and books have been removed.
 
-- **Type:** Jekyll static site generator template
-- **Target Users:** Academics, researchers, and professionals
-- **Key Features:** CV display, publication bibliography, blog posts, projects, news/announcements, course listings
+- **Type:** Jekyll static site (personal portfolio)
+- **Target Users:** Software engineers and technical builders
+- **Key Features:** Project gallery, technical blog, about/homepage with featured project, CV/resume display
 
 ## Tech Stack & Versions
 
@@ -24,8 +24,7 @@
 - `jekyll-archives-v2` – Archive page generation
 - `jekyll-jupyter-notebook` – Jupyter notebook embedding
 - `jekyll-minifier` – CSS/JS minification
-- `jekyll-paginate-v2` – Pagination
-- `jekyll-scholar` – Bibliography management
+- `jekyll-paginate-v2` – Pagination (disabled on blog page; single scrollable list)
 - `jekyll-tabs` – Tab UI components
 - `jekyll-toc` – Table of contents generation
 - `jemoji` – Emoji support

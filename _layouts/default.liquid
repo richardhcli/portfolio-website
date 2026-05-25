@@ -16,36 +16,62 @@
   </head>
 
   <!-- Body -->
-  <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}">
+  <body class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}{% if site.profile_sidebar.enabled %} has-profile-sidebar{% endif %}">
     <!-- Header -->
     {% include header.liquid %}
 
-    <!-- Content -->
-    <div class="container mt-5" role="main">
-      {% if page.toc and page.toc.sidebar %}
-        {% if page.toc.sidebar == 'right' %}
-          <div class="row">
-            <!-- main content area -->
-            <div class="col-sm-9">{{ content }}</div>
-            <!-- sidebar, which will move to the top on a small screen -->
-            <div class="col-sm-3">
-              <nav id="toc-sidebar" class="sticky-top"></nav>
-            </div>
+    {% if site.profile_sidebar.enabled %}
+      <div class="site-layout">
+        {% include profile_sidebar.liquid %}
+
+        <main class="site-main" role="main">
+          <div class="container mt-5 site-main__content">
+            {% if page.toc and page.toc.sidebar %}
+              {% if page.toc.sidebar == 'right' %}
+                <div class="row">
+                  <div class="col-lg-9">{{ content }}</div>
+                  <div class="col-lg-3">
+                    <nav id="toc-sidebar" class="sticky-top"></nav>
+                  </div>
+                </div>
+              {% else %}
+                <div class="row">
+                  <div class="col-lg-3">
+                    <nav id="toc-sidebar" class="sticky-top"></nav>
+                  </div>
+                  <div class="col-lg-9">{{ content }}</div>
+                </div>
+              {% endif %}
+            {% else %}
+              {{ content }}
+            {% endif %}
           </div>
+        </main>
+      </div>
+    {% else %}
+      <!-- Content -->
+      <div class="container mt-5" role="main">
+        {% if page.toc and page.toc.sidebar %}
+          {% if page.toc.sidebar == 'right' %}
+            <div class="row">
+              <div class="col-sm-9">{{ content }}</div>
+              <div class="col-sm-3">
+                <nav id="toc-sidebar" class="sticky-top"></nav>
+              </div>
+            </div>
+          {% else %}
+            <div class="row">
+              <div class="col-sm-3">
+                <nav id="toc-sidebar" class="sticky-top"></nav>
+              </div>
+              <div class="col-sm-9">{{ content }}</div>
+            </div>
+          {% endif %}
         {% else %}
-          <div class="row">
-            <!-- sidebar, which will move to the top on a small screen -->
-            <div class="col-sm-3">
-              <nav id="toc-sidebar" class="sticky-top"></nav>
-            </div>
-            <!-- main content area -->
-            <div class="col-sm-9">{{ content }}</div>
-          </div>
+          {{ content }}
         {% endif %}
-      {% else %}
-        {{ content }}
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
 
     <!-- Footer -->
     {% include footer.liquid %}

@@ -1,19 +1,17 @@
 ---
-applyTo: "_books/**/*.md,_news/**/*.md,_pages/**/*.md,_posts/**/*.md,_projects/**/*.md,_teachings/**/*.md"
+applyTo: "_news/**/*.md,_pages/**/*.md,_posts/**/*.md,_projects/**/*.md"
 ---
 
 # Content Files (Markdown) Instructions
 
 ## File Organization
 
-Content in al-folio is organized by type:
+Content is organized by type:
 
-- **\_books/** – Book reviews and summaries
-- **\_news/** – News/announcements
-- **\_pages/** – Static pages (about, CV, publications, projects, etc.)
+- **\_news/** – News/announcements (optional; disabled on homepage by default)
+- **\_pages/** – Static pages (about, CV, projects, blog index, etc.)
 - **\_posts/** – Blog posts (format: `YYYY-MM-DD-title.md`)
 - **\_projects/** – Project showcase entries
-- **\_teachings/** – Course and teaching information
 
 ## Frontmatter Structure
 
@@ -80,25 +78,7 @@ importance: 1
 ---
 ```
 
-### Teaching/Course Frontmatter (\_teachings/)
-
-```yaml
----
-layout: page
-title: Course Title
-description: Course description
----
-```
-
 ## Special Frontmatter Fields
-
-### For Books
-
-- **author:** Author name or comma-separated list
-- **publisher:** Publisher name
-- **year:** Publication year
-- **rating:** Personal rating (e.g., `8/10`)
-- **img:** Path to book cover image (`/assets/img/...`)
 
 ### For Blog Posts
 
@@ -109,7 +89,7 @@ description: Course description
 
 - **importance:** Integer (1, 2, 3...) – higher = featured first
 - **img:** Path to thumbnail image (`/assets/img/...`)
-- **featured:** Set to `true` to display on main projects section
+- **pinned:** Set to `true` to feature on the homepage (see `_includes/featured_project.liquid`)
 
 ### Date Format
 
@@ -145,8 +125,6 @@ _italic text_
 - `{% include figure.liquid ... %}` – Responsive images with captions
 - `{% include audio.liquid ... %}` – Audio player
 - `{% include video.liquid ... %}` – Video player
-- `{% include bib_search.liquid ... %}` – Bibliography search
-- `{% include calendar.liquid ... %}` – Event calendar
 
 #### Math Support
 

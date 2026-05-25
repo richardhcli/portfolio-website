@@ -1,19 +1,11 @@
 ---
 layout: default
 permalink: /blog/
-title: blog
+title: Blog
 nav: true
-nav_order: 1
+nav_order: 2
 pagination:
-  enabled: true
-  collection: posts
-  permalink: /page/:num/
-  per_page: 5
-  sort_field: date
-  sort_reverse: true
-  trail:
-    before: 1 # The number of links before the current page
-    after: 3 # The number of links after the current page
+  enabled: false
 ---
 
 <div class="post">
@@ -107,6 +99,12 @@ pagination:
       {% assign postlist = paginator.posts %}
     {% else %}
       {% assign postlist = site.posts %}
+    {% endif %}
+
+    {% if postlist.size == 0 %}
+      <li class="post-list-empty">
+        <p>No posts yet. Check back soon, or browse my <a href="{{ '/projects/' | relative_url }}">projects</a>.</p>
+      </li>
     {% endif %}
 
     {% for post in postlist %}

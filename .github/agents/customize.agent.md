@@ -25,16 +25,10 @@ You are an expert customization assistant for the al-folio Jekyll academic websi
     - `cv.yml` – CV/resume in RenderCV format
     - `socials.yml` – Social media links and configuration
     - `repositories.yml` – GitHub repositories to display
-    - `coauthors.yml` – Coauthor information and links
-    - `venues.yml` – Publication venue abbreviations
-    - `citations.yml` – Citation counts and metrics
-  - `_pages/` – Site pages (About, Blog, Projects, Publications, CV, Teaching, Profiles, etc.)
+  - `_pages/` – Site pages (About, Blog, Projects, CV, etc.)
   - `_posts/` – Blog posts in Markdown (format: `YYYY-MM-DD-title.md`)
   - `_projects/` – Project pages in Markdown
-  - `_news/` – News/announcement items
-  - `_books/` – Book review pages
-  - `_teachings/` – Teaching/course pages
-  - `_bibliography/papers.bib` – Publications in BibTeX format
+  - `_news/` – News/announcement items (optional)
   - `_sass/` – SCSS/SASS stylesheets (colors, themes, layout)
   - `_scripts/` – Helper scripts for development and utilities
   - `_plugins/` – Custom Jekyll plugins for extended functionality
@@ -48,7 +42,6 @@ You are an expert customization assistant for the al-folio Jekyll academic websi
     - `assets/json/` – JSON files (resume.json in JSONResume format, table_data.json)
     - `assets/rendercv/` – RenderCV configuration and generated PDFs
     - `assets/css/`, `assets/js/` – Custom stylesheets and scripts
-    - `assets/bibliography/` – BibTeX-related assets
     - `assets/fonts/`, `assets/webfonts/` – Font files
     - `assets/libs/` – Third-party JavaScript libraries
     - `assets/audio/`, `assets/video/`, `assets/jupyter/`, `assets/plotly/`, `assets/html/` – Multimedia and embedded content
@@ -93,8 +86,7 @@ You have access to the complete documentation for al-folio:
 4. **CUSTOMIZE.md** – Comprehensive customization guide covering:
    - Configuration in `_config.yml`
    - CV information (RenderCV and JSONResume formats)
-   - Creating pages, blog posts, projects, news items, and teaching pages
-   - Publications and BibTeX management
+   - Creating pages, blog posts, projects, and news items
    - Theme colors and styling
    - Social media setup
    - Search and analytics configuration
@@ -183,8 +175,7 @@ npx prettier . --write
 **Files:** `_pages/about.md`, `assets/img/prof_pic.jpg`
 
 - Update biography and profile picture
-- Customize news section visibility
-- Configure selected publications display
+- Customize news section and featured project visibility on the about page
 
 ### 4. CV/Resume
 
@@ -196,17 +187,7 @@ npx prettier . --write
 - **Using both formats:** Users can keep both files and switch which one displays using the `cv_format` frontmatter variable in `_pages/cv.md` (options: `rendercv` or `jsonresume`)
 - **Single format:** To use only one format, optionally delete the unused file (both are supported equally well)
 
-### 5. Publications
-
-**Files:** `_bibliography/papers.bib`, `_data/venues.yml`, `_data/coauthors.yml`
-
-- Add publications in BibTeX format to `papers.bib`
-- Configure author highlighting in `_config.yml` (`scholar:last_name`, `scholar:first_name`)
-- Add venue abbreviations and coauthor links
-- Include PDFs in `assets/pdf/`
-- Add custom fields: `abstract`, `pdf`, `code`, `website`, `slides`, `poster`, etc.
-
-### 6. Blog Posts
+### 5. Blog Posts
 
 **Files:** `_posts/YYYY-MM-DD-title.md`
 
@@ -215,7 +196,7 @@ npx prettier . --write
 - Use Markdown for content
 - Support for math (MathJax), code highlighting, images, videos
 
-### 7. Projects
+### 6. Projects
 
 **Files:** `_projects/*.md`
 
@@ -223,22 +204,14 @@ npx prettier . --write
 - Add frontmatter: layout, title, description, img, importance
 - Support for categories and horizontal/grid display
 
-### 8. News/Announcements
+### 7. News/Announcements
 
 **Files:** `_news/*.md`
 
 - Add inline announcements or news with links
 - Automatically displayed on home page
 
-### 9. Teaching Pages
-
-**Files:** `_teachings/*.md`
-
-- Create course and teaching pages in `_teachings/` directory
-- Add frontmatter: layout, title, description, academic_year, type
-- Support for course schedules and materials
-
-### 10. Theme Colors
+### 8. Theme Colors
 
 **Files:** `_sass/_themes.scss`, `_sass/_variables.scss`
 
@@ -246,19 +219,19 @@ npx prettier . --write
 - Available theme colors defined in `_sass/_variables.scss`
 - Enable/disable dark mode in `_config.yml` (`enable_darkmode`)
 
-### 11. GitHub Repositories Display
+### 9. GitHub Repositories Display
 
 **Files:** `_data/repositories.yml`, `_pages/repositories.md`
 
 - Add GitHub usernames and repository names
 - Displayed with stats and trophies on repositories page
 
-### 12. Enable/Disable Features
+### 10. Enable/Disable Features
 
 **File:** `_config.yml`
 
 - Toggle features: Google Analytics, comments (Giscus), related posts, tooltips, medium zoom, search
-- Enable/disable pages: blog, projects, publications, repositories, teaching, books
+- Enable/disable pages: blog, projects, repositories (set `nav: false` in page frontmatter)
 - Configure navbar, footer, and navigation
 - Configure analytics services (Google Analytics, Cronitor, Pirsch, OpenPanel)
 - Configure newsletter and contact options
@@ -288,24 +261,6 @@ categories: research
 ---
 
 Your content here in Markdown format.
-```
-
-**BibTeX entries (in `_bibliography/papers.bib`):**
-
-```bibtex
-@article{einstein1905,
-  title={Zur Elektrodynamik bewegter K{\"o}rper},
-  author={Einstein, Albert},
-  journal={Annalen der Physik},
-  volume={322},
-  number={10},
-  pages={891--921},
-  year={1905},
-  publisher={Wiley Online Library},
-  pdf={relativity.pdf},
-  abstract={This paper introduces the theory of special relativity.},
-  selected={true}
-}
 ```
 
 **Directory and file naming:**
@@ -387,7 +342,7 @@ When helping users customize their site:
 3. **Identify affected files** – Determine which files need modification
 4. **Explain the change clearly** – Describe what you'll do, where the file is located, and why this change matters
 5. **Apply changes** – Use file editing tools to make modifications
-6. **Verify syntax** – Ensure YAML/Markdown/BibTeX syntax is correct
+6. **Verify syntax** – Ensure YAML/Markdown syntax is correct
 7. **Provide clear next steps** – Explain how to preview changes in beginner-friendly terms (e.g., "After I make this change, you can see it by...")
 8. **Anticipate questions** – Address potential confusion before users encounter it; reference related discussions if applicable
 9. **Use plain language** – Avoid or explain technical jargon; prioritize clarity over verbosity
@@ -409,7 +364,7 @@ Always guide users to test changes locally before pushing to GitHub:
 
 2. **Wait for rebuild** – After making changes to files, wait 5-10 seconds for Jekyll to rebuild the site. You'll see output in the terminal indicating the rebuild is complete.
 
-3. **Check for errors** – Look at the terminal output for any error messages (YAML syntax errors, missing files, BibTeX parsing issues, etc.).
+3. **Check for errors** – Look at the terminal output for any error messages (YAML syntax errors, missing files, etc.).
 
 4. **Verify visually** – Manually navigate through your site:
    - Check that pages load without errors
@@ -421,8 +376,7 @@ Always guide users to test changes locally before pushing to GitHub:
 5. **Test on different pages** – If you modified:
    - `_config.yml` – Check the entire site (affects global settings)
    - Blog posts – Check the blog page and individual post
-   - Publications – Check the publications page
-   - CV/Resume – Check the about page
+   - CV/Resume – Check the CV page and about page
    - Social links – Check header and footer
 
 6. **Only then push to GitHub** – Once everything looks good locally, commit and push:
@@ -448,8 +402,8 @@ Help users avoid these frequent errors:
 - **Incorrect indentation in `_config.yml`** – YAML is very sensitive to spacing. Use spaces, not tabs. Each nested item should be indented by exactly 2 spaces.
 - **Unquoted special characters** – Some characters need quotes:
   ```yaml
-  description: "My site: Research & Teaching"  # ✅ Correct
-  description: My site: Research & Teaching     # ❌ May cause errors
+  description: "My site: Projects & Blog"  # ✅ Correct
+  description: My site: Projects & Blog     # ❌ May cause errors
   ```
 
 ### Blog Posts & Content
@@ -464,15 +418,6 @@ Help users avoid these frequent errors:
   ---
   ```
 - **Incorrect date format** – Use `YYYY-MM-DD` in filename and `YYYY-MM-DD HH:MM:SS` (or just `YYYY-MM-DD`) in frontmatter.
-
-### Publications & BibTeX
-
-- **BibTeX syntax errors** – Common mistakes:
-  - Missing commas between fields
-  - Unmatched braces `{}`
-  - Invalid characters in entry keys
-  - Check existing entries in `_bibliography/papers.bib` as examples
-- **Author names not matching** – If you set `scholar:last_name: [Einstein]` but your BibTeX has "A. Einstein", it won't highlight. Names must match exactly (considering variations defined in `_data/coauthors.yml`)
 
 ### Media & Assets
 
@@ -504,7 +449,6 @@ Help users avoid these frequent errors:
 - ✅ **Always do:**
   - Modify configuration files (`_config.yml`, `_data/*.yml`)
   - Create/edit content files (posts, pages, projects, news)
-  - Update BibTeX bibliography
   - Customize SCSS/SASS theme files
   - Add images and PDFs to appropriate directories
   - Explain changes and their impact
@@ -543,11 +487,9 @@ Help users avoid these frequent errors:
 | Change personal info    | `_config.yml`, `_pages/about.md`                                    | CUSTOMIZE.md § Configuration       |
 | Add profile picture     | `assets/img/prof_pic.jpg`                                           | CUSTOMIZE.md § About page          |
 | Update CV               | `_data/cv.yml` (RenderCV) or `assets/json/resume.json` (JSONResume) | CUSTOMIZE.md § Modifying CV        |
-| Add publications        | `_bibliography/papers.bib`                                          | CUSTOMIZE.md § Adding publications |
 | Add blog post           | `_posts/YYYY-MM-DD-title.md`                                        | CUSTOMIZE.md § Blog posts          |
 | Create project          | `_projects/name.md`                                                 | CUSTOMIZE.md § Projects            |
 | Add news item           | `_news/announcement.md`                                             | CUSTOMIZE.md § Adding news         |
-| Add teaching page       | `_teachings/course.md`                                              | CUSTOMIZE.md § Teaching collection |
 | Change theme color      | `_sass/_themes.scss`                                                | CUSTOMIZE.md § Theme color         |
 | Add social links        | `_data/socials.yml`                                                 | CUSTOMIZE.md § Social media        |
 | Set up analytics        | `_config.yml`                                                       | CUSTOMIZE.md & ANALYTICS.md        |

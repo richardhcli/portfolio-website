@@ -1,5 +1,7 @@
 # al-folio
 
+> **Portfolio fork:** This site is [Richard Li](https://richardhcli.com)'s personal portfolio — **Projects**, **Blog**, **About**, and **CV**. Publications, teaching, and books pages from the upstream al-folio template have been removed.
+
 <div align="center">
 
 [![Preview](readme_preview/al-folio-preview.png)](https://alshedivat.github.io/al-folio/)
@@ -391,23 +393,11 @@ You can create a people page if you want to feature more than one person. Each p
 
 ---
 
-### Publications
-
-Your publications page is generated automatically from your BibTeX bibliography. You can customize publication display, add extra information like PDFs, and control sorting behavior.
-
-[![Publications Preview](readme_preview/publications.png)](https://alshedivat.github.io/al-folio/publications/)
-
-For setup, BibTeX field documentation, and customization options, see [Adding a new publication](CUSTOMIZE.md#adding-a-new-publication) and [Managing publication display](CUSTOMIZE.md#managing-publication-display) in [CUSTOMIZE.md](CUSTOMIZE.md).
-
----
-
 ### Collections
 
-This Jekyll theme implements `collections` to organize content into categories. The theme comes with default collections for `news`, `projects`, `books`, and `teachings`. You can easily create your own collections for apps, stories, courses, or any other creative work.
+This site uses Jekyll `collections` for `news` and `projects`. See [Adding Collections](CUSTOMIZE.md#adding-collections) in [CUSTOMIZE.md](CUSTOMIZE.md).
 
 [![Projects Preview](readme_preview/projects.png)](https://alshedivat.github.io/al-folio/projects/)
-
-For detailed instructions on creating and customizing collections, see [Adding Collections](CUSTOMIZE.md#adding-collections) in [CUSTOMIZE.md](CUSTOMIZE.md).
 
 ---
 

@@ -1,32 +1,41 @@
 <header>
   <!-- Nav Bar -->
-  <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
-    <div class="container">
-      {% if page.permalink != '/' %}
-        <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
-          {% if site.title == 'blank' %}
-            {% if site.first_name %}
-              <span class="font-weight-bold">
-                {{- site.first_name -}}
-              </span>
+  <nav id="navbar" class="navbar navbar-light navbar-expand-lg {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
+    <div class="container navbar-container">
+      <div class="navbar-left">
+        {% if page.permalink == '/' and site.enable_navbar_social %}
+          <div class="navbar-brand social">{% social_links %}</div>
+        {% else %}
+          <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
+            {% if site.title == 'blank' %}
+              {% if site.first_name %}
+                <span class="font-weight-bold">
+                  {{- site.first_name -}}
+                </span>
+              {% endif %}
+              {% if site.middle_name %}
+                {{- site.middle_name -}}
+              {% endif %}
+              {% if site.last_name %}
+                {{- site.last_name -}}
+              {% endif %}
+            {% else %}
+              {{- site.title -}}
             {% endif %}
-            {% if site.middle_name %}
-              {{- site.middle_name -}}
-            {% endif %}
-            {% if site.last_name %}
-              {{- site.last_name -}}
-            {% endif %}
-          {% else %}
-            {{- site.title -}}
-          {% endif %}
-        </a>
-      {% elsif site.enable_navbar_social %}
-        <!-- Social Icons -->
-        <div class="navbar-brand social">{% social_links %}</div>
+          </a>
+        {% endif %}
+      </div>
+
+      {% if site.search_enabled %}
+        <div class="navbar-center d-none d-lg-flex">
+          <button id="search-toggle" title="Search" onclick="openSearchModal()">
+            <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span>
+          </button>
+        </div>
       {% endif %}
-      <!-- Navbar Toggle -->
+
       <button
-        class="navbar-toggler collapsed ml-auto"
+        class="navbar-toggler collapsed"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNav"
@@ -40,23 +49,8 @@
         <span class="icon-bar bottom-bar"></span>
       </button>
 
-      <div class="collapse navbar-collapse text-right" id="navbarNav">
+      <div class="collapse navbar-collapse navbar-right" id="navbarNav">
         <ul class="navbar-nav ml-auto flex-nowrap">
-          {% for page in site.pages %}
-            {% if page.permalink == '/' %} {% assign about_title = page.title %} {% endif %}
-          {% endfor %}
-
-          <!-- About -->
-          <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-            <a class="nav-link" href="{{ '/' | relative_url }}">
-              {{- about_title }}
-              {% if page.permalink == '/' %}
-                <span class="sr-only">(current)</span>
-              {% endif %}
-            </a>
-          </li>
-
-          <!-- Other pages -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}
           {% for p in sorted_pages %}
             {% if p.nav and p.autogen == null %}
@@ -99,7 +93,11 @@
                 </li>
               {% else %}
                 {% assign parent_link = p.permalink | remove: 'index.html' %}
-                <li class="nav-item {% if page.url contains parent_link %}active{% endif %}">
+                {% assign nav_item_class = 'nav-item' %}
+                {% if p.nav_highlight %}
+                  {% assign nav_item_class = nav_item_class | append: ' nav-item-highlight' %}
+                {% endif %}
+                <li class="{{ nav_item_class }} {% if page.url contains parent_link %}active{% endif %}">
                   {%- if p.permalink contains '://' -%}
                     {%- assign url = p.permalink -%}
                   {%- elsif p.permalink contains '/blog/' -%}
@@ -107,7 +105,11 @@
                   {%- else -%}
                     {%- assign url = p.url -%}
                   {%- endif %}
-                  <a class="nav-link" href="{{ url | relative_url }}">
+                  {% assign nav_link_class = 'nav-link' %}
+                  {% if p.nav_highlight %}
+                    {% assign nav_link_class = nav_link_class | append: ' nav-link-highlight' %}
+                  {% endif %}
+                  <a class="{{ nav_link_class }}" href="{{ url | relative_url }}">
                     {{- p.title }}
                     {% if page.url contains p.url %}
                       <span class="sr-only">(current)</span>
@@ -117,16 +119,16 @@
               {% endif %}
             {% endif %}
           {% endfor %}
+
           {% if site.search_enabled %}
-            <!-- Search -->
-            <li class="nav-item">
-              <button id="search-toggle" title="Search" onclick="openSearchModal()">
-                <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span>
+            <li class="nav-item d-lg-none">
+              <button class="search-toggle-mobile" title="Search" onclick="openSearchModal()">
+                <span class="nav-link"><i class="fa-solid fa-magnifying-glass"></i> Search</span>
               </button>
             </li>
           {% endif %}
+
           {% if site.enable_darkmode %}
-            <!-- Toogle theme mode -->
             <li class="toggle-container">
               <button id="light-toggle" title="Change theme">
                 <i class="fa-half-sun-moon" id="light-toggle-system"></i>

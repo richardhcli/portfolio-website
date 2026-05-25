@@ -1,6 +1,6 @@
-# Agent Guidelines for al-folio
+# Agent Guidelines for Richard Li Portfolio
 
-A simple, clean, and responsive Jekyll theme for academics.
+A Jekyll portfolio site (forked from [al-folio](https://github.com/alshedivat/al-folio)) focused on **projects**, **blog**, **about**, and **CV** — not academic publications or teaching pages.
 
 ## Quick Links by Role
 
@@ -68,7 +68,6 @@ When modifying `_config.yml`, these **must be updated together**:
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | Markdown content (`_posts/`, `_pages/`, etc.) | [markdown-content.instructions.md](.github/instructions/markdown-content.instructions.md)       |
 | YAML config (`_config.yml`, `_data/`)         | [yaml-configuration.instructions.md](.github/instructions/yaml-configuration.instructions.md)   |
-| BibTeX (`_bibliography/`)                     | [bibtex-bibliography.instructions.md](.github/instructions/bibtex-bibliography.instructions.md) |
 | Liquid templates (`_includes/`, `_layouts/`)  | [liquid-templates.instructions.md](.github/instructions/liquid-templates.instructions.md)       |
 | JavaScript (`_scripts/`)                      | [javascript-scripts.instructions.md](.github/instructions/javascript-scripts.instructions.md)   |
 

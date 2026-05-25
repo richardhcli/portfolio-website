@@ -157,9 +157,6 @@ layout: default
               {% elsif section_title == 'Awards' or section_title == 'Honors and Awards' %}
                 {% assign entries = section_entries %}
                 {% include cv/awards.liquid %}
-              {% elsif section_title == 'Publications' %}
-                {% assign entries = section_entries %}
-                {% include cv/publications.liquid %}
               {% elsif section_title == 'Skills' %}
                 {% assign entries = section_entries %}
                 {% include cv/skills.liquid %}
@@ -296,18 +293,6 @@ layout: default
             <div>
               {% assign entries = site.data.resume.awards %}
               {% include cv/awards.liquid %}
-            </div>
-          </div>
-        {% endif %}
-
-        <!-- Publications -->
-        {% if site.data.resume.publications.size > 0 %}
-          <a class="anchor" id="publications"></a>
-          <div class="card mt-3 p-3">
-            <h3 class="card-title font-weight-medium">Publications</h3>
-            <div>
-              {% assign entries = site.data.resume.publications %}
-              {% include cv/publications.liquid %}
             </div>
           </div>
         {% endif %}

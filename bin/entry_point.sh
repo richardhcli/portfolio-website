@@ -19,6 +19,15 @@ manage_gemfile_lock() {
     fi
 }
 
+restart_jekyll() {
+    echo "Change detected to $CONFIG_FILE, restarting Jekyll"
+    jekyll_pid=$(pgrep -f jekyll || true)
+    if [ -n "$jekyll_pid" ]; then
+        kill -KILL "$jekyll_pid"
+    fi
+    start_jekyll
+}
+
 start_jekyll() {
     manage_gemfile_lock
     bundle exec jekyll serve --watch --port=8080 --host=0.0.0.0 --livereload --verbose --trace --force_polling &

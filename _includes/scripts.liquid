@@ -98,11 +98,6 @@
   <script defer src="{{ '/assets/js/echarts-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
 {% endif %}
 
-{% if page.calendar %}
-  <!-- Calendar setup -->
-  <script defer src="{{ '/assets/js/calendar-setup.js' | relative_url | bust_file_cache }}" type="text/javascript"></script>
-{% endif %}
-
 {% if page.chart and page.chart.plotly %}
   <!-- Plotly -->
   <script
@@ -186,14 +181,6 @@
 
 <!-- Jupyter Open External Links New Tab -->
 <script defer src="{{ '/assets/js/jupyter_new_tab.js' | relative_url | bust_file_cache }}"></script>
-
-<!-- Badges -->
-{% if site.enable_publication_badges.altmetric %}
-  <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
-{% endif %}
-{% if site.enable_publication_badges.dimensions %}
-  <script async src="https://badge.dimensions.ai/badge.js"></script>
-{% endif %}
 
 {% if site.enable_math %}
   <!-- MathJax -->
