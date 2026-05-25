@@ -2,6 +2,15 @@
 
 A Jekyll portfolio site (forked from [al-folio](https://github.com/alshedivat/al-folio)) focused on **projects**, **blog**, **about**, and **CV** — not academic publications or teaching pages.
 
+## prompt template:
+```
+@.github/agents/customize.agent.md
+Follow the customization agent instructions. I want to:
+- make a custom jekyll theme (color palete). 
+
+What is the best way to do this? 
+```
+
 ## Site structure
 
 | URL | Source | Notes |
