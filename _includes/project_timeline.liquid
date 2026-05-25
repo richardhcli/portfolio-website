@@ -16,7 +16,9 @@
       >
         <div class="project-timeline-rail" aria-hidden="true">
           <span class="project-timeline-node"></span>
-          <span class="project-timeline-segment"></span>
+          {% unless forloop.last %}
+            <span class="project-timeline-segment"></span>
+          {% endunless %}
         </div>
         <article class="project-timeline-content">
           <div class="project-timeline-meta">
