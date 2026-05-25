@@ -182,6 +182,7 @@ bundle exec jekyll serve --port 5000
 - [ ] Did you clear your browser cache?
 - [ ] Wait 5 minutes for GitHub Pages to update
 - [ ] Check GitHub Actions completed successfully
+- [ ] **CSS works locally but not on GitHub Pages?** Dev mode skips PurgeCSS. Run the production preview to reproduce: `docker compose -f docker-compose.prod-preview.yml up` → http://localhost:8081. See [Production-only CSS Breaks](../.github/copilot-instructions.md#production-only-css-breaks-works-locally-broken-on-github-pages).
 
 ---
 
