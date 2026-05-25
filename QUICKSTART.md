@@ -43,13 +43,27 @@
 1. Open `_config.yml` in your repository
 2. Update these fields:
    ```yaml
-   title: My Website
+   title: My Portfolio
    first_name: Your
    last_name: Name
    url: https://your-username.github.io # or your custom domain
    baseurl: # Leave this empty (do NOT delete it)
+
+   profile_sidebar:
+     enabled: true
+     image: prof_pic.jpg
+     image_circular: true
+     title: Your tagline
+     location: Your city
+     website: https://your-username.github.io
+     email: you@example.com
+     github_username: your-github-username
+     linkedin_username: your-linkedin-username
    ```
-3. Click **Commit changes** (at the bottom of the page)
+3. Replace `assets/img/prof_pic.jpg` with your photo
+4. Click **Commit changes** (at the bottom of the page)
+
+> **Local preview:** After editing `_config.yml`, restart Jekyll: `docker compose restart jekyll`. See [TROUBLESHOOTING.md](TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
 
 ## Step 4: View Your Site (1 min)
 
@@ -71,10 +85,12 @@ Once your site is running, explore these customization options:
 
 ### Add Your Content
 
-- **Profile picture:** Replace `assets/img/prof_pic.jpg` with your photo
-- **About page:** Edit `_pages/about.md` to write your bio
-- **Publications:** Add entries to `_bibliography/papers.bib`
+- **Profile sidebar:** Edit `profile_sidebar` in `_config.yml`; photo at `assets/img/prof_pic.jpg`
+- **About page:** Edit `_pages/about.md` for your extended bio
+- **Homepage:** Edit `_pages/home.md` for the intro blurb and featured project settings
+- **Projects:** Add Markdown files in `_projects/`
 - **Blog posts:** Create files in `_posts/` with format `YYYY-MM-DD-title.md`
+- **CV:** Edit `_data/cv.yml` or `assets/json/resume.json`
 
 ### Customize Appearance
 

@@ -3,13 +3,12 @@ function determineGiscusTheme() {
     let theme =
       localStorage.getItem("theme") ||
       document.documentElement.getAttribute("data-theme") ||
-      "system";
+      "dark";
 
     if (theme === "dark") return "dark";
     if (theme === "light") return "light";
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return prefersDark ? "dark" : "light";
+    return "dark";
   
 }
 

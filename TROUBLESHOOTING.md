@@ -229,29 +229,6 @@ bundle exec jekyll serve --port 5000
 
 ---
 
-### Publications not displaying
-
-**Problem:** You added a BibTeX entry to `papers.bib` but it's not showing on the publications page.
-
-**Checklist:**
-
-- [ ] File is at `_bibliography/papers.bib`
-- [ ] BibTeX syntax is correct (check for missing commas, unmatched braces)
-- [ ] Entry has a unique citation key: `@article{einstein1905, ...}`
-- [ ] Publication page is enabled: Check `publications_page: true` in `_config.yml`
-
-**To debug BibTeX errors:**
-
-```bash
-# Local Ruby setup
-bundle exec jekyll build 2>&1 | grep -i bibtex
-
-# Docker
-docker compose run --rm web jekyll build 2>&1 | grep -i bibtex
-```
-
----
-
 ### Images not loading
 
 **Problem:** Image paths broken or showing as missing.
