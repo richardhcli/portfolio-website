@@ -272,7 +272,6 @@ Run the test yourself: [Google Lighthouse PageSpeed Insights](https://pagespeed.
     - [Light/Dark Mode](#lightdark-mode)
     - [CV](#cv)
     - [People](#people)
-    - [Publications](#publications)
     - [Collections](#collections)
     - [Layouts](#layouts)
       - [The iconic style of Distill](#the-iconic-style-of-distill)
