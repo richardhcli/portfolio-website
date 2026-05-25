@@ -1,0 +1,142 @@
+.project-section-header {
+  text-align: center;
+  padding: 2rem 0 1rem;
+}
+
+.project-section-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-section-header p {
+  font-size: 1.1rem;
+  color: var(--global-text-color-light);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.project-timeline-section {
+  padding: 2rem 0 3rem;
+}
+
+.project-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+
+.project-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--global-theme-color), var(--global-divider-color));
+}
+
+.project-timeline-item {
+  position: relative;
+  padding-bottom: 2.5rem;
+  padding-left: 2rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.project-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.project-timeline-item-visible,
+.project-timeline-item:nth-child(1),
+.project-timeline-item:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-timeline-marker {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.25rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--global-theme-color);
+  border: 3px solid var(--global-bg-color);
+  box-shadow: 0 0 0 3px var(--global-theme-color);
+}
+
+.project-timeline-content {
+  background: var(--global-card-bg-color);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--global-divider-color);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.project-timeline-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.project-timeline-content time {
+  display: inline-block;
+  font-size: 0.875rem;
+  color: var(--global-text-color-light);
+  margin-bottom: 0.5rem;
+}
+
+.project-timeline-content h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.project-timeline-content h3 a {
+  color: var(--global-text-color);
+}
+
+.project-timeline-content h3 a:hover {
+  color: var(--global-theme-color);
+}
+
+.project-timeline-content p {
+  margin: 0 0 1rem;
+  color: var(--global-text-color-light);
+}
+
+.project-timeline-thumb {
+  margin-bottom: 1rem;
+  max-width: 320px;
+}
+
+.project-timeline-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .project-section-header h1 {
+    font-size: 2rem;
+  }
+
+  .project-timeline {
+    padding-left: 1rem;
+  }
+
+  .project-timeline-item {
+    padding-left: 1.5rem;
+  }
+
+  .project-timeline-marker {
+    left: -1.5rem;
+    width: 10px;
+    height: 10px;
+  }
+}

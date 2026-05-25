@@ -1,0 +1,20 @@
+---
+layout: page
+title: Public shared wall
+description: Publicly hosted shared textfile
+date: 2025-11-25
+importance: 1
+category: work
+tags:
+  - project
+  - web development
+github: https://github.com/richardhcli/JSON-storage-unit
+---
+
+## Overview
+
+Live hosted: [https://pythingsrhl.pythonanywhere.com/](https://pythingsrhl.pythonanywhere.com/)
+
+A public text file that anybody can write and read from, with persistence (stored in database).
+
+Also, a stored JSON that requires an API key to read and write from.

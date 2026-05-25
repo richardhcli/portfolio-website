@@ -10,6 +10,11 @@ pagination:
 
 <div class="post">
 
+<p class="blog-crosslink-note">
+  This page hosts technical and engineering posts. For personal and reflective writing, see my
+  <a href="https://richardhcli.github.io/blogLog/">blog log on richardhcli.github.io</a>.
+</p>
+
 {% assign blog_name_size = site.blog_name | size %}
 {% assign blog_description_size = site.blog_description | size %}
 
