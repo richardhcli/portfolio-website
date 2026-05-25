@@ -19,10 +19,7 @@ This guide helps you optimize your al-folio website for search engines so your r
   - [Search Console Setup](#search-console-setup)
     - [Google Search Console](#google-search-console)
     - [Bing Webmaster Tools](#bing-webmaster-tools)
-  - [Publication Indexing](#publication-indexing)
-    - [Google Scholar](#google-scholar)
-    - [DBLP (Computer Science)](#dblp-computer-science)
-    - [arXiv](#arxiv)
+  - [Portfolio SEO note](#portfolio-seo-note)
   - [Content Optimization](#content-optimization)
     - [Page Titles and Descriptions](#page-titles-and-descriptions)
     - [Heading Structure](#heading-structure)
@@ -247,79 +244,9 @@ Similar to Google Search Console but for Bing search:
 
 ---
 
-## Publication Indexing
+## Portfolio SEO note
 
-### Google Scholar
-
-**Goal:** Get your publications listed on Google Scholar so they show up in scholar search results.
-
-**Google Scholar auto-crawls:**
-
-- Your website automatically (if publicly accessible)
-- Your publications page if it has proper markup
-- PDFs linked from your site
-
-**To improve Scholar indexing:**
-
-1. **Ensure BibTeX has proper format:**
-
-   ```bibtex
-   @article{mykey,
-     title={Your Paper Title},
-     author={Your Name and Co-Author},
-     journal={Journal Name},
-     year={2024},
-     volume={1},
-     pages={1-10},
-     doi={10.1234/doi}
-   }
-   ```
-
-2. **Add PDFs to BibTeX:**
-
-   ```bibtex
-   @article{mykey,
-     # ... other fields ...
-     pdf={my-paper.pdf}  # File at assets/pdf/my-paper.pdf
-   }
-   ```
-
-3. **Submit to Google Scholar (optional):**
-   - Go to [Google Scholar Author Profile](https://scholar.google.com/citations)
-   - Create a profile
-   - Google will find your papers automatically within weeks
-
-4. **Wait 3-6 months** – Google Scholar takes time to index
-
----
-
-### DBLP (Computer Science)
-
-If your research is computer science related:
-
-1. Go to [DBLP](https://dblp.org/)
-2. Search for yourself or your papers
-3. If missing, [Submit via DBLP](https://dblp.org/db/contrib/) (requires account)
-4. DBLP will verify and add your work
-
----
-
-### arXiv
-
-If you have preprints:
-
-1. Go to [arXiv.org](https://arxiv.org/)
-2. Submit your preprint
-3. Once listed, arXiv automatically indexes it across search engines
-
-**Add arXiv link to BibTeX:**
-
-```bibtex
-@article{mykey,
-  # ... other fields ...
-  arxiv={2024.12345}  # arXiv ID
-}
-```
+This portfolio fork does not include a publications page. Focus SEO on project pages, blog posts, and the about/CV pages. See [General SEO setup](#general-seo-setup) above for site-wide configuration.
 
 ---
 

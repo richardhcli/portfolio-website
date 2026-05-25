@@ -23,6 +23,7 @@ This guide covers common issues and their solutions. For more information, see [
     - [Images not loading](#images-not-loading)
   - [Configuration Issues](#configuration-issues)
     - [YAML syntax errors](#yaml-syntax-errors)
+    - [Changes to _config.yml not appearing locally](#changes-to-_configyml-not-appearing-locally)
     - [Feed (RSS/Atom) not working](#feed-rssatom-not-working)
     - [Search not working](#search-not-working)
   - [Feature-Specific Issues](#feature-specific-issues)
@@ -320,6 +321,35 @@ nav:
 1. Use a YAML validator: [yamllint.com](https://www.yamllint.com/)
 2. Run locally: `bundle exec jekyll build` shows the exact error line
 3. Check that you didn't delete required lines (like `baseurl:`)
+
+---
+
+### Changes to _config.yml not appearing locally
+
+**Problem:** You edited `_config.yml` (for example `profile_sidebar.image`, `profile_sidebar.image_circular`, theme colors, or `url` / `baseurl`) or replaced a profile image, but the site at `http://localhost:8080` still looks the same.
+
+**Cause:** `jekyll serve --watch` rebuilds pages when content and templates change, but it **does not reload `_config.yml`**. Settings read from config— including the profile sidebar— are loaded once when Jekyll starts. The dev server keeps serving the old values until you restart it.
+
+**Solution:**
+
+1. Save your changes to `_config.yml` (and any image files under `assets/img/`).
+2. Restart the Docker dev server:
+
+   ```bash
+   docker compose restart jekyll
+   ```
+
+   If you changed dependencies or the Dockerfile, use a full rebuild instead:
+
+   ```bash
+   docker compose up --build
+   ```
+
+3. Hard-refresh the browser so cached CSS or images update:
+   - Windows/Linux: `Ctrl+Shift+R`
+   - macOS: `Cmd+Shift+R`
+
+**When to restart:** After any `_config.yml` edit (profile sidebar, navigation, theme, plugins, search, imagemagick, etc.) or when swapping profile images that use the same filename. You do not need to restart for every Markdown, Liquid, or SCSS change— those are picked up by `--watch`.
 
 ---
 
