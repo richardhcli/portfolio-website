@@ -1,8 +1,24 @@
-# al-folio
+# Richard Li Portfolio
 
-> **Portfolio fork:** This site is [Richard Li](https://richardhcli.com)'s personal portfolio — **Projects**, **Blog**, **About**, and **CV**. Publications, teaching, and books pages from the upstream al-folio template have been removed.
+> **Portfolio fork:** Live at [richardhcli.com](https://richardhcli.com). This site focuses on **Projects**, **Blog**, **About**, and **CV** with a left **profile sidebar**. Publications, teaching, and books from upstream al-folio have been removed.
 
-<div align="center">
+### Site map
+
+| Page | URL | Edit |
+| --- | --- | --- |
+| Home | `/` | `_pages/home.md`, `_layouts/home.liquid` |
+| Projects | `/projects/` | `_projects/`, `_pages/projects.md` |
+| Blog | `/blog/` | `_posts/`, `_pages/blog.md` |
+| About | `/about/` | `_pages/about.md` |
+| CV | `/cv/` | `_data/cv.yml`, `_pages/cv.md` |
+
+**Profile sidebar:** `_config.yml` → `profile_sidebar` (photo, title, contact links).
+
+**Local dev:** `docker compose up` → http://localhost:8080. After `_config.yml` changes: `docker compose restart jekyll` ([details](TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally)).
+
+**Deploy:** Push to `main` → GitHub Actions builds and publishes to the `gh-pages` branch. Set Pages source to `gh-pages`.
+
+---
 
 [![Preview](readme_preview/al-folio-preview.png)](https://alshedivat.github.io/al-folio/)
 
@@ -26,7 +42,7 @@
 [![Code Wiki](https://img.shields.io/badge/Code_Wiki-ask_about_repo-blue?logo=googlegemini)](https://codewiki.google/github.com/alshedivat/al-folio)
 [![DeepWiki](https://img.shields.io/badge/DeepWiki-ask_about_repo-lightcyan)](https://deepwiki.com/alshedivat/al-folio)
 
-</div>
+---
 
 ## User community
 
@@ -332,7 +348,7 @@ The **Customization Agent** helps you personalize your al-folio website by:
 - Guiding you through configuration changes step-by-step
 - Modifying files directly in your repository
 - Explaining technical concepts in plain language (great for users without coding experience)
-- Assisting with common tasks like updating your CV, adding publications, creating blog posts, and customizing themes
+- Assisting with common tasks like updating your CV, creating blog posts, and customizing themes
 
 See [CUSTOMIZE.md § GitHub Copilot Customization Agent](CUSTOMIZE.md#github-copilot-customization-agent) for detailed usage instructions.
 
@@ -355,7 +371,7 @@ Comprehensive guides for all aspects of your al-folio website:
 
 - **[Quick Start](QUICKSTART.md)** – Get running in 5 minutes
 - **[Installation & Deployment](INSTALL.md)** – Set up your site on GitHub Pages or other platforms
-- **[Customization Guide](CUSTOMIZE.md)** – Personalize your website (CVs, publications, themes, etc.)
+- **[Customization Guide](CUSTOMIZE.md)** – Personalize your website (projects, CV, themes, etc.)
 - **[Troubleshooting](TROUBLESHOOTING.md)** – Fix common issues (deployment, build, styling, content)
 - **[FAQ](FAQ.md)** – Frequently asked questions and solutions
 - **[Analytics](ANALYTICS.md)** – Add website analytics and visitor tracking

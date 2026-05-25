@@ -2,6 +2,20 @@
 
 A Jekyll portfolio site (forked from [al-folio](https://github.com/alshedivat/al-folio)) focused on **projects**, **blog**, **about**, and **CV** — not academic publications or teaching pages.
 
+## Site structure
+
+| URL | Source | Notes |
+| --- | --- | --- |
+| `/` | `_pages/home.md` | Featured project, latest posts, link to About — not in navbar |
+| `/projects/` | `_pages/projects.md` + `_projects/` | Project gallery |
+| `/blog/` | `_pages/blog.md` + `_posts/` | Technical writing |
+| `/about/` | `_pages/about.md` | Extended bio (orange nav highlight) |
+| `/cv/` | `_pages/cv.md` + `_data/cv.yml` | RenderCV / JSONResume |
+
+**Profile sidebar:** Left column on all pages when `profile_sidebar.enabled: true`. Configured entirely in `_config.yml` under `profile_sidebar:` (photo, title, location, contact links). Name comes from `first_name`, `middle_name`, `last_name`. Template: `_includes/profile_sidebar.liquid`.
+
+**After editing `_config.yml`:** Restart Jekyll — see [TROUBLESHOOTING.md § Changes to _config.yml not appearing locally](TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
+
 ## Quick Links by Role
 
 - **Are you a coding agent?** → Read [`.github/copilot-instructions.md`](.github/copilot-instructions.md) first (tech stack, build, CI/CD, common pitfalls & solutions)
@@ -25,6 +39,9 @@ docker compose pull && docker compose up
 
 # Rebuild after changing dependencies or Dockerfile
 docker compose up --build
+
+# Restart after _config.yml changes (profile sidebar, theme, url, etc.)
+docker compose restart jekyll
 
 # Stop containers and free port 8080
 docker compose down

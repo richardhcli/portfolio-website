@@ -6,7 +6,7 @@
 
 - **Type:** Jekyll static site (personal portfolio)
 - **Target Users:** Software engineers and technical builders
-- **Key Features:** Project gallery, technical blog, about/homepage with featured project, CV/resume display
+- **Key Features:** Project gallery, technical blog, homepage with featured project, left profile sidebar, about page, CV/resume display
 
 ## Tech Stack & Versions
 
@@ -89,34 +89,37 @@ bundle exec jekyll serve --port 4000   # Run at http://localhost:4000
 
 ### Root Directory Structure
 
-- `_bibliography/papers.bib` – BibTeX bibliography for publications
-- `_config.yml` – **Primary configuration file** (title, author, URLs, baseurl, feature flags)
-- `_data/` – YAML data files (socials.yml, coauthors.yml, cv.yml, citations.yml, venues.yml, repositories.yml)
-- `_includes/` – Reusable Liquid template components
-- `_layouts/` – Page layout templates (about.liquid, post.liquid, bib.liquid, distill.liquid, cv.liquid, etc.)
-- `_news/` – News/announcement entries
-- `_pages/` – Static pages (about.md, cv.md, publications.md, projects.md, teaching.md, etc.)
-- `_posts/` – Blog posts (format: YYYY-MM-DD-title.md)
+- `_config.yml` – **Primary configuration file** (title, author, URLs, `profile_sidebar`, feature flags)
+- `_data/` – YAML data files (`socials.yml`, `cv.yml`, `repositories.yml`)
+- `_includes/` – Reusable Liquid template components (`profile_sidebar.liquid`, header, footer, etc.)
+- `_layouts/` – Page layout templates (`default.liquid`, `home.liquid`, `about.liquid`, `post.liquid`, `cv.liquid`, etc.)
+- `_pages/` – Static pages (`home.md`, `about.md`, `cv.md`, `projects.md`, `blog.md`, etc.)
+- `_plugins/` – Custom Jekyll plugins (e.g. `css-cache-bust-fix.rb`)
+- `_posts/` – Blog posts (format: `YYYY-MM-DD-title.md`)
 - `_projects/` – Project showcase entries
-- `_sass/` – SCSS stylesheets
+- `_sass/` – SCSS stylesheets (includes `_sidebar.scss` for profile column)
 - `_scripts/` – JavaScript files for functionality
-- `_teachings/` – Course and teaching entries
 - `assets/img/` – Images, profile pictures
 - `docker-compose.yml` – Docker compose configuration
 - `Dockerfile` – Docker image definition
-- `Gemfile` & `Gemfile.lock` – Ruby dependency specifications
+- `Gemfile` & `Gemfile.lock` – Ruby dependency specifications (keep in sync; no `jekyll-scholar`)
 - `package.json` – Node.js dependencies (prettier only)
 - `purgecss.config.js` – PurgeCSS configuration for production CSS optimization
+
+**Removed in this fork:** `_bibliography/`, `_teachings/`, `_books/`, publications/teaching/books pages, `jekyll-scholar` gem.
 
 ### Configuration Priority
 
 When making changes:
 
-1. **Always start with `_config.yml`** for site-wide settings
+1. **Always start with `_config.yml`** for site-wide settings (including `profile_sidebar`)
 2. **Feature flags are in `_config.yml`** – Look for `enabled: true/false` options
-3. **Social media links:** `_data/socials.yml`
-4. **Content data:** Respective `_data/*.yml` files
-5. **Styling:** `_sass/` directory (uses SCSS)
+3. **Profile sidebar:** `_config.yml` → `profile_sidebar` block (not a separate `_data/` file)
+4. **Social media links (search/metadata):** `_data/socials.yml`
+5. **CV content:** `_data/cv.yml` and/or `assets/json/resume.json`
+6. **Styling:** `_sass/` directory (uses SCSS)
+
+**Important:** `_config.yml` changes require restarting Jekyll locally (`docker compose restart jekyll`). See [TROUBLESHOOTING.md](../TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
 
 ## CI/CD Pipeline & Validation
 
@@ -137,8 +140,9 @@ When making changes:
 - **broken-links.yml, broken-links-site.yml** – Link validation
 - **axe.yml** – Accessibility testing
 - **codeql.yml** – Security scanning
-- **update-citations.yml** – Automatic citation updates
 - **render-cv.yml** – CV rendering from RenderCV format
+
+**Deployment:** Push to `main`/`master` triggers the workflow; built output is published to the **`gh-pages` branch** via `JamesIves/github-pages-deploy-action`. Set GitHub Pages source to the `gh-pages` branch.
 
 ### Pre-commit Requirements
 
@@ -210,6 +214,17 @@ bundle exec jekyll build
 - **Cause:** Empty blog posts or posts with only stop words confuse classifier-reborn
 - **Solution:** Add meaningful content to posts, or set `related_posts: false` in post frontmatter
 
+### `_config.yml` Changes Not Appearing Locally
+
+- **Problem:** Profile sidebar, theme, or URL settings unchanged after editing `_config.yml`
+- **Cause:** Jekyll loads config at startup; `--watch` does not reload `_config.yml`
+- **Solution:** `docker compose restart jekyll`, then hard-refresh the browser. See [TROUBLESHOOTING.md](../TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
+
+### Gemfile.lock Out of Sync (CI deploy failure)
+
+- **Problem:** GitHub Actions fails with "frozen mode" / deleted gems in Gemfile
+- **Solution:** Run `bundle install` locally (or in Docker), commit the updated `Gemfile.lock`, and push
+
 ## File Format Specifications
 
 ### Blog Post Frontmatter (\_posts/)
@@ -234,12 +249,6 @@ img: /assets/img/project-image.jpg
 importance: 1
 ---
 ```
-
-### BibTeX Format (papers.bib)
-
-- Standard BibTeX format
-- al-folio supports custom keywords: `pdf`, `code`, `preview`, `doi`, etc.
-- Check CUSTOMIZE.md for custom bibtex keyword documentation
 
 ## Trust These Instructions
 

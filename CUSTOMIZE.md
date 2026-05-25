@@ -2,11 +2,14 @@
 
 Here we will give you some tips on how to customize the website. One important thing to note is that **ALL** the changes you make should be done on the **main** branch of your repository. The `gh-pages` branch is automatically overwritten every time you make a change to the main branch.
 
+> **Portfolio fork:** This repository is customized for [Richard Li's portfolio](https://richardhcli.com). It uses **Projects → Blog → About → CV** navigation, a left **profile sidebar** (configured in `_config.yml`), and a separate **home** page at `/`. Publications, teaching, and books features from upstream al-folio have been removed. Sections below that reference BibTeX, `_bibliography/`, or teaching collections describe upstream al-folio and do not apply to this fork unless you re-add those features.
+
 > **Note for users without coding experience:** You do **not** need to understand the technology stack or have any coding background to create and customize your own website with al-folio. This template was specifically designed to be accessible to academics and researchers from all backgrounds. You can create a fully functional website by simply editing configuration files and adding content in Markdown, no coding required.
 
 <!--ts-->
 
 - [Customize](#customize)
+  - [Portfolio site overview](#portfolio-site-overview)
   - [Project structure](#project-structure)
   - [Configuration](#configuration)
   - [GitHub Copilot Customization Agent](#github-copilot-customization-agent)
@@ -102,42 +105,30 @@ The project is structured as follows, focusing on the main components that you w
 
 ```txt
 .
-├── 📂 assets/: contains the assets that are displayed in the website
-│   └── 📂 json/
-    │   └── 📄 resume.json: CV in JSON format (https://jsonresume.org/)
-├── 📂 _bibliography/
-│   └── 📄 papers.bib: bibliography in BibTeX format
-├── 📂 _books/: contains the bookshelf pages
-├── 📄 _config.yml: the configuration file of the template
-├── 📂 _data/: contains some of the data used in the template
-│   ├── 📄 cv.yml: CV in YAML format, used when assets/json/resume.json is not found
-│   ├── 📄 repositories.yml: users and repositories info in YAML format
-│   └── 📄 socials.yml: your social media and contact info in YAML format
-├── 📂 _includes/: contains code parts that are included in the main HTML file
-│   └── 📄 news.liquid: defines the news section layout in the about page
-├── 📂 _layouts/: contains the layouts to choose from in the frontmatter of the Markdown files
-├── 📂 _news/: the news that will appear in the news section in the about page
-├── 📂 _pages/: contains the pages of the website
-|   └── 📄 404.md: 404 page (page not found)
-├── 📂 _posts/: contains the blog posts
-├── 📂 _projects/: contains the projects
-└── 📂 _sass/: contains the SASS files that define the style of the website
-    ├── 📂 font-awesome/: contains the SCSS files for Font Awesome
-    ├── 📄 _blog.scss: blog post, tags, and pagination styles
-    ├── 📄 _components.scss: reusable component styles (cards, profiles, CV, projects)
-    ├── 📄 _cv.scss: style of the CV page
-    ├── 📄 _distill.scss: style of the Distill articles
-    ├── 📄 _footer.scss: footer styles
-    ├── 📄 _layout.scss: overall layout styles
-    ├── 📄 _navbar.scss: navigation bar and dropdown menu styles
-    ├── 📄 _publications.scss: publication list and bibliography styles
-    ├── 📄 _tabs.scss: tabbed content styles
-    ├── 📄 _teachings.scss: course and teaching styles
-    ├── 📄 _themes.scss: theme colors and icons
-    ├── 📄 _typograms.scss: typogram diagram styles
-    ├── 📄 _typography.scss: text, headings, links, tables, and blockquote styles
-    ├── 📄 _utilities.scss: utility styles (code highlighting, forms, modals, animations)
-    └── 📄 _variables.scss: variables used in the SASS files
+├── 📂 assets/
+│   ├── 📂 img/               profile photos and media
+│   ├── 📂 json/              resume.json (JSONResume)
+│   └── 📂 pdf/               CV PDF and downloads
+├── 📄 _config.yml            site config (includes profile_sidebar)
+├── 📂 _data/
+│   ├── 📄 cv.yml             CV in RenderCV YAML format
+│   ├── 📄 repositories.yml   GitHub repos for repositories page
+│   └── 📄 socials.yml        social links (search/metadata)
+├── 📂 _includes/
+│   ├── 📄 profile_sidebar.liquid
+│   └── …                     header, footer, figure, etc.
+├── 📂 _layouts/
+│   ├── 📄 default.liquid     wraps pages with profile sidebar
+│   ├── 📄 home.liquid        homepage layout
+│   └── 📄 about.liquid       about page layout
+├── 📂 _pages/                static pages (home, about, blog, projects, cv)
+├── 📂 _posts/                blog posts
+├── 📂 _projects/             project entries
+├── 📂 _plugins/              custom Jekyll plugins
+└── 📂 _sass/
+    ├── 📄 _sidebar.scss      profile sidebar layout
+    ├── 📄 _navbar.scss       navigation (centered search)
+    └── …                     themes, layout, components, etc.
 ```
 
 ## Configuration
@@ -146,7 +137,7 @@ The configuration file [\_config.yml](_config.yml) contains the main configurati
 
 > Note that the `url` and `baseurl` settings are used to generate the links of the website, as explained in the [install instructions](INSTALL.md).
 
-All changes made to this file are only visible after you rebuild the website. That means that you need to run `bundle exec jekyll serve` again if you are running the website locally or push your changes to GitHub if you are using GitHub Pages. All other changes are visible immediately, you only need to refresh the page.
+All changes made to `_config.yml` are only visible after you **restart Jekyll** locally (`docker compose restart jekyll`) or push to GitHub for deployment. Other file changes (Markdown, Liquid, SCSS) are picked up by `--watch` — refresh the page to see them.
 
 If changes don't appear after refreshing, try:
 
@@ -173,9 +164,9 @@ This repository includes a specialized GitHub Copilot agent (`.github/agents/cus
 The customization agent can assist with tasks such as:
 
 - Changing basic site information (title, author name, contact details)
+- Configuring the profile sidebar in `_config.yml`
 - Updating your CV or resume
-- Adding and managing publications from BibTeX files
-- Creating blog posts, projects, and news items
+- Creating blog posts and projects
 - Customizing theme colors and styling
 - Managing social media links
 - Enabling or disabling features in `_config.yml`
@@ -194,9 +185,8 @@ To use the customization agent:
 For example, you can ask:
 
 - "How do I change my website's theme color to blue?"
-- "Help me add a new blog post about my research"
-- "Update my profile information with my new university email"
-- "How do I add a publication to my website?"
+- "Help me add a new blog post"
+- "How do I add a project to my portfolio?"
 
 The agent is designed to be patient and helpful, explaining each step clearly so you understand what's being changed and why.
 

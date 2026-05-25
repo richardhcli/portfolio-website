@@ -31,7 +31,7 @@ The **Customization Agent** (`.github/agents/customize.agent.md`) helps users cu
 - Applies changes directly to your repository files
 - Provides step-by-step instructions for common customization tasks
 
-To use the customization agent, you need to have [GitHub Copilot](https://github.com/features/copilot) enabled in your repository. The agent can help with tasks like changing site information, updating your CV, adding publications, creating blog posts, customizing theme colors, and more.
+To use the customization agent, you need to have [GitHub Copilot](https://github.com/features/copilot) enabled in your repository. The agent can help with tasks like changing site information, updating your CV, creating blog posts and projects, customizing theme colors, and more.
 
 ### Documentation Agent
 
