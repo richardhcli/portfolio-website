@@ -9,7 +9,7 @@
   padding-bottom: 3rem;
 
   h1 {
-    color: var(--global-theme-color);
+    color: var(--global-text-color);
     font-size: 5rem;
   }
 }
@@ -68,6 +68,10 @@
       text-decoration: none;
 
       &:hover {
+        color: var(--global-hover-color);
+      }
+
+      &:active {
         color: var(--global-theme-color);
       }
     }
@@ -118,6 +122,10 @@
       text-decoration: none;
 
       &:hover {
+        color: var(--global-hover-color);
+      }
+
+      &:active {
         color: var(--global-theme-color);
       }
     }
@@ -136,6 +144,14 @@
     }
 
     &:hover {
+      color: var(--global-hover-color);
+
+      .card-title {
+        color: var(--global-hover-color);
+      }
+    }
+
+    &:active {
       color: var(--global-theme-color);
 
       .card-title {
@@ -160,8 +176,12 @@
     color: inherit;
 
     &:hover {
-      color: var(--global-theme-color);
+      color: var(--global-hover-color);
       text-decoration: none;
+    }
+
+    &:active {
+      color: var(--global-theme-color);
     }
   }
 }

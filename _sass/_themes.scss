@@ -1,57 +1,54 @@
 /*******************************************************************************
- * Themes
+ * Themes — Dracula Classic (dark) & Alucard Classic (light)
+ * https://draculatheme.com/spec
  ******************************************************************************/
 @use "variables" as v;
 @use "sass:color";
 
 :root {
   color-scheme: light;
-  --global-bg-color: #{v.$white-color};
+  --global-bg-color: #{v.$alucard-bg};
   --global-code-bg-color: #{v.$code-bg-color-light};
-  --global-text-color: #{v.$black-color};
-  --global-text-color-light: #{v.$grey-color};
-  --global-theme-color: #{v.$blue-color};
-  --global-hover-color: #{v.$blue-color};
-  --global-hover-text-color: #{v.$white-color};
-  --global-footer-bg-color: #{v.$grey-color-dark};
-  --global-footer-text-color: #{v.$grey-color-light};
-  --global-footer-link-color: #{v.$white-color};
-  --global-distill-app-color: #{v.$grey-color};
-  --global-divider-color: rgba(0, 0, 0, 0.1);
-  --global-card-bg-color: #{v.$white-color};
-  --global-highlight-color: #{v.$red-color-dark};
+  --global-text-color: #{v.$alucard-fg};
+  --global-text-color-light: #{v.$alucard-comment};
+  --global-theme-color: #{v.$dracula-functional-cyan};
+  --global-hover-color: #{v.$alucard-pink};
+  --global-hover-text-color: #{v.$alucard-bg};
+  --global-footer-bg-color: #{v.$alucard-ui-bg-dark};
+  --global-footer-text-color: #{v.$alucard-fg};
+  --global-footer-link-color: #{v.$dracula-functional-cyan};
+  --global-distill-app-color: #{v.$alucard-comment};
+  --global-divider-color: #{v.$alucard-selection};
+  --global-card-bg-color: #{v.$alucard-ui-floating};
+  --global-highlight-color: #{v.$dracula-functional-red};
   --global-back-to-top-bg-color: rgba(
-    #{color.channel(v.$black-color, "red", v.$space: rgb)},
-    #{color.channel(v.$black-color, "green", v.$space: rgb)},
-    #{color.channel(v.$black-color, "blue", v.$space: rgb)},
-    0.4
+    #{color.channel(v.$alucard-fg, "red", v.$space: rgb)},
+    #{color.channel(v.$alucard-fg, "green", v.$space: rgb)},
+    #{color.channel(v.$alucard-fg, "blue", v.$space: rgb)},
+    0.75
   );
-  --global-back-to-top-text-color: #{v.$white-color};
-  --global-newsletter-bg-color: #{v.$white-color};
-  --global-newsletter-text-color: #{v.$black-color};
-  --global-nav-highlight-bg: #{v.$orange-color-light};
-  --global-nav-highlight-bg-hover: #{color.adjust(v.$orange-color, $lightness: 35%)};
-  --global-nav-highlight-text: #{v.$grey-900};
+  --global-back-to-top-text-color: #{v.$alucard-bg};
+  --global-newsletter-bg-color: #{v.$alucard-ui-floating};
+  --global-newsletter-text-color: #{v.$alucard-fg};
+  --global-nav-highlight-bg: #{v.$alucard-orange};
+  --global-nav-highlight-bg-hover: #{color.adjust(v.$alucard-orange, $lightness: -8%)};
+  --global-nav-highlight-text: #{v.$alucard-bg};
 
-  --global-tip-block: #42b983;
-  --global-tip-block-bg: #e2f5ec;
-  --global-tip-block-text: #215d42;
-  --global-tip-block-title: #359469;
-  --global-warning-block: #e7c000;
-  --global-warning-block-bg: #fff8d8;
-  --global-warning-block-text: #6b5900;
-  --global-warning-block-title: #b29400;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #ffe0e0;
-  --global-danger-block-text: #600;
-  --global-danger-block-title: #c00;
-
-  #light-toggle-system {
-    display: inline-block;
-  }
+  --global-tip-block: #{v.$dracula-functional-green};
+  --global-tip-block-bg: rgba(8, 145, 8, 0.1);
+  --global-tip-block-text: #{v.$alucard-green};
+  --global-tip-block-title: #{v.$dracula-functional-green};
+  --global-warning-block: #{v.$dracula-functional-orange};
+  --global-warning-block-bg: rgba(163, 149, 20, 0.12);
+  --global-warning-block-text: #{v.$alucard-orange};
+  --global-warning-block-title: #{v.$dracula-functional-orange};
+  --global-danger-block: #{v.$dracula-functional-red};
+  --global-danger-block-bg: rgba(222, 87, 53, 0.12);
+  --global-danger-block-text: #{v.$alucard-red};
+  --global-danger-block-title: #{v.$dracula-functional-red};
 
   #light-toggle-dark {
-    display: none;
+    display: inline-block;
   }
 
   #light-toggle-light {
@@ -79,44 +76,44 @@
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --global-bg-color: #{v.$grey-color-dark};
+  --global-bg-color: #{v.$dracula-bg};
   --global-code-bg-color: #{v.$code-bg-color-dark};
-  --global-text-color: #{v.$grey-color-light};
-  --global-text-color-light: #{v.$grey-color};
-  --global-theme-color: #{v.$cyan-color};
-  --global-hover-color: #{v.$cyan-color};
-  --global-hover-text-color: #{v.$white-color};
-  --global-footer-bg-color: #{v.$grey-color-light};
-  --global-footer-text-color: #{v.$grey-color-dark};
-  --global-footer-link-color: #{v.$black-color};
-  --global-distill-app-color: #{v.$grey-color-light};
-  --global-divider-color: #424246;
-  --global-card-bg-color: #{v.$grey-900};
+  --global-text-color: #{v.$dracula-fg};
+  --global-text-color-light: #{v.$dracula-comment};
+  --global-theme-color: #{v.$dracula-functional-cyan};
+  --global-hover-color: #{v.$dracula-pink};
+  --global-hover-text-color: #{v.$dracula-bg};
+  --global-footer-bg-color: #{v.$dracula-ui-bg-dark};
+  --global-footer-text-color: #{v.$dracula-fg};
+  --global-footer-link-color: #{v.$dracula-cyan};
+  --global-distill-app-color: #{v.$dracula-comment};
+  --global-divider-color: #{v.$dracula-current-line};
+  --global-card-bg-color: #{v.$dracula-ui-floating};
   --global-back-to-top-bg-color: rgba(
-    #{color.channel(v.$white-color, "red", v.$space: rgb)},
-    #{color.channel(v.$white-color, "green", v.$space: rgb)},
-    #{color.channel(v.$white-color, "blue", v.$space: rgb)},
-    0.5
+    #{color.channel(v.$dracula-functional-purple, "red", v.$space: rgb)},
+    #{color.channel(v.$dracula-functional-purple, "green", v.$space: rgb)},
+    #{color.channel(v.$dracula-functional-purple, "blue", v.$space: rgb)},
+    0.85
   );
-  --global-back-to-top-text-color: #{v.$black-color};
-  --global-newsletter-bg-color: #{v.$grey-color-light};
-  --global-newsletter-text-color: #{v.$grey-color-dark};
-  --global-nav-highlight-bg: #{color.adjust(v.$orange-color, $lightness: -25%)};
-  --global-nav-highlight-bg-hover: #{color.adjust(v.$orange-color, $lightness: -15%)};
-  --global-nav-highlight-text: #{v.$white-color};
+  --global-back-to-top-text-color: #{v.$dracula-bg};
+  --global-newsletter-bg-color: #{v.$dracula-ui-floating};
+  --global-newsletter-text-color: #{v.$dracula-fg};
+  --global-nav-highlight-bg: #{v.$dracula-orange};
+  --global-nav-highlight-bg-hover: #{color.adjust(v.$dracula-orange, $lightness: 8%)};
+  --global-nav-highlight-text: #{v.$dracula-bg};
 
-  --global-tip-block: #42b983;
-  --global-tip-block-bg: #215d42;
-  --global-tip-block-text: #beffe2;
-  --global-tip-block-title: #e2f5ec;
-  --global-warning-block: #e7c000;
-  --global-warning-block-bg: #6b5900;
-  --global-warning-block-text: #fff2af;
-  --global-warning-block-title: #fff8d8;
-  --global-danger-block: #c00;
-  --global-danger-block-bg: #600;
-  --global-danger-block-text: #ffb9b9;
-  --global-danger-block-title: #ffe0e0;
+  --global-tip-block: #{v.$dracula-functional-green};
+  --global-tip-block-bg: rgba(8, 145, 8, 0.2);
+  --global-tip-block-text: #{v.$dracula-green};
+  --global-tip-block-title: #{v.$dracula-green};
+  --global-warning-block: #{v.$dracula-functional-orange};
+  --global-warning-block-bg: rgba(163, 149, 20, 0.2);
+  --global-warning-block-text: #{v.$dracula-yellow};
+  --global-warning-block-title: #{v.$dracula-orange};
+  --global-danger-block: #{v.$dracula-functional-red};
+  --global-danger-block-bg: rgba(222, 87, 53, 0.2);
+  --global-danger-block-text: #{v.$dracula-red};
+  --global-danger-block-title: #{v.$dracula-red};
 
   .only-light {
     display: none;
@@ -128,10 +125,6 @@ html[data-theme="dark"] {
 }
 
 html[data-theme-setting="dark"] {
-  #light-toggle-system {
-    display: none;
-  }
-
   #light-toggle-dark {
     display: inline-block;
   }
@@ -147,10 +140,6 @@ html[data-theme-setting="dark"] {
 }
 
 html[data-theme-setting="light"] {
-  #light-toggle-system {
-    display: none;
-  }
-
   #light-toggle-dark {
     display: none;
   }
@@ -158,57 +147,4 @@ html[data-theme-setting="light"] {
   #light-toggle-light {
     display: inline-block;
   }
-}
-
-.fa-half-sun-moon {
-  position: relative;
-  display: inline-block;
-
-  --fa-font: var(--fa-font-solid);
-  speak: none;
-  font-style: normal;
-  font-variant: normal;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  width: 1em;
-  height: 1em;
-}
-
-.fa-half-sun-moon::before,
-.fa-half-sun-moon::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  top: -0.5px;
-  bottom: -0.5px;
-  text-align: center;
-  line-height: 1em;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  font: var(--fa-font);
-}
-
-/* Left half: MOON */
-.fa-half-sun-moon::before {
-  content: "\f111";
-  color: var(--global-text-color);
-  clip-path: polygon(0 0, calc(50% - 0.5px) 0, calc(50% - 0.5px) 100%, 0 100%);
-}
-
-/* Right half: SUN */
-.fa-half-sun-moon::after {
-  content: "\f185";
-  color: var(--global-text-color);
-  clip-path: polygon(calc(50% + 0.5px) 0, 100% 0, 100% 100%, calc(50% + 0.5px) 100%);
-  right: -1.5px; /* slight overflow to avoid right-edge clipping */
-  transform: translateX(-1px); /* visually re-center the sun half */
-}
-
-#light-toggle:hover .fa-half-sun-moon::before {
-  color: var(--global-theme-color);
-}
-
-#light-toggle:hover .fa-half-sun-moon::after {
-  color: var(--global-theme-color);
 }

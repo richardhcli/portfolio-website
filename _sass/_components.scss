@@ -130,6 +130,12 @@ ul.task-list input[type="checkbox"] {
 
     &:hover {
       .card-title {
+        color: var(--global-hover-color);
+      }
+    }
+
+    &:active {
+      .card-title {
         color: var(--global-theme-color);
       }
     }
@@ -203,6 +209,12 @@ ul.task-list input[type="checkbox"] {
       &:hover {
         text-decoration: none;
 
+        i::before {
+          color: var(--global-hover-color);
+        }
+      }
+
+      &:active {
         i::before {
           color: var(--global-theme-color);
         }

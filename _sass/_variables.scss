@@ -33,10 +33,57 @@ $grey-900: #212529;
 $white-color: #ffffff !default;
 $black-color: #000000 !default;
 
+// Dracula Classic (dark) — https://draculatheme.com/spec
+$dracula-bg: #282a36 !default;
+$dracula-current-line: #6272a4 !default;
+$dracula-selection: #44475a !default;
+$dracula-current-line-fallback: #353747 !default;
+$dracula-fg: #f8f8f2 !default;
+$dracula-comment: #6272a4 !default;
+$dracula-red: #ff5555 !default;
+$dracula-orange: #ffb86c !default;
+$dracula-yellow: #f1fa8c !default;
+$dracula-green: #50fa7b !default;
+$dracula-cyan: #8be9fd !default;
+$dracula-purple: #bd93f9 !default;
+$dracula-pink: #ff79c6 !default;
+$dracula-ui-floating: #343746 !default;
+$dracula-ui-bg-lighter: #424450 !default;
+$dracula-ui-bg-light: #343746 !default;
+$dracula-ui-bg-dark: #21222c !default;
+$dracula-ui-bg-darker: #191a21 !default;
+
+// Alucard Classic (light) — https://draculatheme.com/spec
+$alucard-bg: #fffbeb !default;
+$alucard-current-line: #6c664b !default;
+$alucard-selection: #cfcfde !default;
+$alucard-current-line-fallback: #e2deca !default;
+$alucard-fg: #1f1f1f !default;
+$alucard-comment: #6c664b !default;
+$alucard-red: #cb3a2a !default;
+$alucard-orange: #a34d14 !default;
+$alucard-yellow: #846e15 !default;
+$alucard-green: #14710a !default;
+$alucard-cyan: #036a96 !default;
+$alucard-purple: #644ac9 !default;
+$alucard-pink: #a3144d !default;
+$alucard-ui-floating: #efeddc !default;
+$alucard-ui-bg-lighter: #ece9df !default;
+$alucard-ui-bg-light: #dedccf !default;
+$alucard-ui-bg-dark: #ceccc0 !default;
+$alucard-ui-bg-darker: #bcbab3 !default;
+
+// Functional UI colors (shared across variants) — not for syntax highlighting
+$dracula-functional-red: #de5735 !default;
+$dracula-functional-orange: #a39514 !default;
+$dracula-functional-green: #089108 !default;
+$dracula-functional-cyan: #0081d6 !default;
+$dracula-functional-purple: #815cd6 !default;
+
 // Theme colors
 
-$code-bg-color-light: rgba($purple-color, 0.05);
-$code-bg-color-dark: #2c3237 !default;
+$code-bg-color-light: $alucard-current-line-fallback;
+$code-bg-color-dark: $dracula-selection !default;
 
 // Font awesome location
 $fa-font-path: "../webfonts";
