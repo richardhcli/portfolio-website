@@ -19,7 +19,6 @@ This guide covers common issues and their solutions. For more information, see [
     - [Theme colors not applying](#theme-colors-not-applying)
   - [Content Not Appearing](#content-not-appearing)
     - [Blog posts not showing up](#blog-posts-not-showing-up)
-    - [Publications not displaying](#publications-not-displaying)
     - [Images not loading](#images-not-loading)
   - [Configuration Issues](#configuration-issues)
     - [YAML syntax errors](#yaml-syntax-errors)
