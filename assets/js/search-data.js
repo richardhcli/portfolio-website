@@ -20,7 +20,7 @@ ninja.data = [{
           },
         },{id: "nav-blog",
           title: "Blog",
-          description: "",
+          description: "Notes on engineering, experiments, and project write-ups",
           section: "Navigation",
           handler: () => {
             
@@ -29,7 +29,7 @@ ninja.data = [{
           },
         },{id: "nav-about",
           title: "About",
-          description: "",
+          description: "Machine learning architecture, applied psychology, and pattern recognition",
           section: "Navigation",
           handler: () => {
             
