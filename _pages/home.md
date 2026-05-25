@@ -14,4 +14,4 @@ latest_posts:
   limit: 3
 ---
 
-This site is my portfolio: selected work lives on the [projects](/projects/) page, and technical write-ups appear on the [blog](/blog/). For personal and reflective posts, see my [blog log on richardhcli.github.io](https://richardhcli.github.io/blogLog/). For a structured résumé, see my [CV](/cv/).
+This site is my portfolio: selected work lives on the [projects](/projects/) page, and technical write-ups appear on the [blog](/blog/). For personal and reflective posts, see my [blog log on richardhcli.github.io](https://richardhcli.github.io/blogLog/). For my résumé, see [CV (PDF)]({% include cv_pdf_url.liquid %}).

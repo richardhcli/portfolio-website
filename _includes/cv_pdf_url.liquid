@@ -1,0 +1,5 @@
+{%- if site.cv_pdf contains '://' -%}
+  {{- site.cv_pdf -}}
+{%- else -%}
+  {{- site.cv_pdf | relative_url -}}
+{%- endif -%}

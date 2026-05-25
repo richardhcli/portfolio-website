@@ -2,11 +2,10 @@
 
 ## Repository Overview
 
-**Richard Li Portfolio** is a Jekyll portfolio site (forked from [al-folio](https://github.com/alshedivat/al-folio)). It focuses on projects, blog posts, about, and CV — publications, teaching, and books have been removed.
+**Richard Li Portfolio** — Jekyll site (al-folio fork). Projects, blog, about, CV (PDF-only). Publications/teaching/books removed.
 
 - **Type:** Jekyll static site (personal portfolio)
-- **Target Users:** Software engineers and technical builders
-- **Key Features:** Project gallery, technical blog, homepage with featured project, left profile sidebar, about page, CV/resume display
+- **Key Features:** Animated project-log timeline, technical blog (year TOC sidebars), profile sidebar, PDF-only CV via `cv_pdf` in `_config.yml`
 
 ## Tech Stack & Versions
 
@@ -89,35 +88,28 @@ bundle exec jekyll serve --port 4000   # Run at http://localhost:4000
 
 ### Root Directory Structure
 
-- `_config.yml` – **Primary configuration file** (title, author, URLs, `profile_sidebar`, feature flags)
-- `_data/` – YAML data files (`socials.yml`, `cv.yml`, `repositories.yml`)
-- `_includes/` – Reusable Liquid template components (`profile_sidebar.liquid`, header, footer, etc.)
-- `_layouts/` – Page layout templates (`default.liquid`, `home.liquid`, `about.liquid`, `post.liquid`, `cv.liquid`, etc.)
-- `_pages/` – Static pages (`home.md`, `about.md`, `cv.md`, `projects.md`, `blog.md`, etc.)
-- `_plugins/` – Custom Jekyll plugins (e.g. `css-cache-bust-fix.rb`)
-- `_posts/` – Blog posts (format: `YYYY-MM-DD-title.md`)
-- `_projects/` – Project showcase entries
-- `_sass/` – SCSS stylesheets (includes `_sidebar.scss` for profile column)
-- `_scripts/` – JavaScript files for functionality
-- `assets/img/` – Images, profile pictures
-- `docker-compose.yml` – Docker compose configuration
-- `Dockerfile` – Docker image definition
-- `Gemfile` & `Gemfile.lock` – Ruby dependency specifications (keep in sync; no `jekyll-scholar`)
-- `package.json` – Node.js dependencies (prettier only)
-- `purgecss.config.js` – PurgeCSS configuration for production CSS optimization
+- `_config.yml` – Primary config (`profile_sidebar`, `cv_pdf`, feature flags)
+- `_data/socials.yml` – Social links + `cv_pdf` for search
+- `_includes/` – `profile_sidebar.liquid`, `project_timeline.liquid`, `blog_list_by_year.liquid`, `cv_pdf_url.liquid`
+- `_layouts/` – `default.liquid`, `home.liquid`, `about.liquid`, `post.liquid`
+- `_pages/` – `home.md`, `about.md`, `projects.md`, `blog.md`, `cv.md` (navbar PDF stub)
+- `_posts/` – Blog posts (`YYYY-MM-DD-title.md`)
+- `_projects/` – Project entries (rendered on timeline)
+- `_sass/` – `_project-timeline.scss`, `_sidebar.scss`, themes, etc.
+- `assets/js/` – `project-timeline.js` (scroll animation), `common.js` (year-only TOC)
+- `assets/img/projects/` – Media by year (`2025/`, `2026/`, ...)
 
-**Removed in this fork:** `_bibliography/`, `_teachings/`, `_books/`, publications/teaching/books pages, `jekyll-scholar` gem.
+**Removed:** `_data/cv.yml`, `assets/json/resume.json`, `_layouts/cv.liquid`, `_includes/cv/`, `assets/rendercv/`, `render-cv.yml`, `_bibliography/`, `_teachings/`, `_books/`, `jekyll-scholar`.
 
 ### Configuration Priority
 
 When making changes:
 
-1. **Always start with `_config.yml`** for site-wide settings (including `profile_sidebar`)
-2. **Feature flags are in `_config.yml`** – Look for `enabled: true/false` options
-3. **Profile sidebar:** `_config.yml` → `profile_sidebar` block (not a separate `_data/` file)
-4. **Social media links (search/metadata):** `_data/socials.yml`
-5. **CV content:** `_data/cv.yml` and/or `assets/json/resume.json`
-6. **Styling:** `_sass/` directory (uses SCSS)
+1. **`_config.yml`** – start with this; site-wide settings (`profile_sidebar`, `cv_pdf`, feature flags)
+2. **`_data/socials.yml`** – social/contact links + `cv_pdf` for search
+3. **CV:** PDF-only — `cv_pdf` in `_config.yml`; link helper `_includes/cv_pdf_url.liquid`
+4. **Project timeline:** `_includes/project_timeline.liquid` + `_sass/_project-timeline.scss` + `assets/js/project-timeline.js`
+5. **Styling:** `_sass/` (SCSS)
 
 **Important:** `_config.yml` changes require restarting Jekyll locally (`docker compose restart jekyll`). See [TROUBLESHOOTING.md](../TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
 
@@ -140,7 +132,7 @@ When making changes:
 - **broken-links.yml, broken-links-site.yml** – Link validation
 - **axe.yml** – Accessibility testing
 - **codeql.yml** – Security scanning
-- **render-cv.yml** – CV rendering from RenderCV format
+- ~~render-cv.yml~~ – removed (CV is PDF-only)
 
 **Deployment:** Push to `main`/`master` triggers the workflow; built output is published to the **`gh-pages` branch** via `JamesIves/github-pages-deploy-action`. Set GitHub Pages source to the `gh-pages` branch.
 
@@ -244,8 +236,13 @@ categories: category-name
 ---
 layout: page
 title: Project Name
-description: Short description
-img: /assets/img/project-image.jpg
+description: Short description (shown on timeline card)
+date: 2025-12-10
+tags:
+  - tag-one
+  - tag-two
+github: https://github.com/user/repo # optional — adds icon on timeline
+img: assets/img/projects/2025/thumb.png # optional
 importance: 1
 ---
 ```

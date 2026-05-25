@@ -23,6 +23,12 @@ $(document).ready(function () {
     $(".publications h2").each(function () {
       $(this).attr("data-toc-skip", "");
     });
+    // year-only sidebars (projects / blog): skip every heading except year anchors
+    $("h1, h2, h3, h4")
+      .not(".year-toc-heading")
+      .each(function () {
+        $(this).attr("data-toc-skip", "");
+      });
     var navSelector = "#toc-sidebar";
     var $myNav = $(navSelector);
     Toc.init($myNav);

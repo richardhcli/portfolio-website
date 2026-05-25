@@ -1,11 +1,38 @@
 <section id="posts" class="project-timeline-section">
   <div class="project-timeline">
     {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
+    {% assign current_year = '' %}
+    {% assign stagger_index = 0 %}
     {% for project in sorted_projects %}
-      <div class="project-timeline-item" data-date="{{ project.date | date_to_xmlschema }}">
-        <div class="project-timeline-marker"></div>
-        <div class="project-timeline-content">
-          <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date: '%B %d, %Y' }}</time>
+      {% assign project_year = project.date | date: '%Y' %}
+      {% if project_year != current_year %}
+        <h2 id="{{ project_year }}" class="year-toc-heading">{{ project_year }}</h2>
+        {% assign current_year = project_year %}
+      {% endif %}
+      <div
+        class="project-timeline-item"
+        data-date="{{ project.date | date_to_xmlschema }}"
+        style="--stagger-index: {{ stagger_index }}"
+      >
+        <div class="project-timeline-rail" aria-hidden="true">
+          <span class="project-timeline-node"></span>
+          <span class="project-timeline-segment"></span>
+        </div>
+        <article class="project-timeline-content">
+          <div class="project-timeline-meta">
+            <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date: '%Y-%m-%d' }}</time>
+            {% if project.github %}
+              <a
+                class="project-timeline-github"
+                href="{{ project.github }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View {{ project.title }} on GitHub"
+              >
+                <i class="fa-brands fa-github"></i>
+              </a>
+            {% endif %}
+          </div>
           <h3>
             <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
           </h3>
@@ -18,37 +45,15 @@
           {% if project.tags %}
             <div class="project-timeline-tags">
               {% for tag in project.tags %}
-                <span class="badge badge-light">{{ tag }}</span>
+                <span class="project-timeline-tag">#{{ tag | replace: ' ', '-' | downcase }}</span>
               {% endfor %}
             </div>
           {% endif %}
-        </div>
+        </article>
       </div>
+      {% assign stagger_index = stagger_index | plus: 1 %}
     {% endfor %}
   </div>
 </section>
 
-<script>
-  (function () {
-    'use strict';
-
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px',
-    };
-
-    const observer = new IntersectionObserver(function (entries) {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('project-timeline-item-visible');
-        }
-      });
-    }, observerOptions);
-
-    document.addEventListener('DOMContentLoaded', function () {
-      document.querySelectorAll('.project-timeline-item').forEach((item) => {
-        observer.observe(item);
-      });
-    });
-  })();
-</script>
+<script defer src="{{ '/assets/js/project-timeline.js' | relative_url }}"></script>

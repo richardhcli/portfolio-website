@@ -1,12 +1,6 @@
 ---
-layout: cv
-permalink: /cv/
 title: CV
 nav: true
 nav_order: 4
-cv_pdf: /assets/pdf/example_pdf.pdf # you can also use external links here
-cv_format: rendercv # options: rendercv, jsonresume
-description: Résumé and experience summary.
-toc:
-  sidebar: left
+permalink: https://drive.google.com/file/d/1nKXqQy7LzwMQU_mMiYjSvF6az85v4pTR/view?usp=drive_link
 ---

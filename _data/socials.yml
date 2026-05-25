@@ -1,8 +1,8 @@
 # this file contains the social media links and usernames of the author
 # the socials will be displayed in the order they are defined here
 # for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
-cv_pdf: /assets/pdf/example_pdf.pdf
-email: you@example.com
+cv_pdf: https://drive.google.com/file/d/1nKXqQy7LzwMQU_mMiYjSvF6az85v4pTR/view?usp=drive_link
+email: richardhcli@gmail.com
 rss_icon: true
-github_username: your-github-username
-linkedin_username: your-linkedin-username
+github_username: richardhcli
+linkedin_username: richardhcli

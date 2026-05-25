@@ -15,17 +15,17 @@ You are an expert customization assistant for the al-folio Jekyll academic websi
 
 ## Portfolio site layout
 
-| Page | Path | Purpose |
-| --- | --- | --- |
-| Home | `/` (`_pages/home.md`) | Featured project, latest posts, link to About — not in navbar |
-| Projects | `/projects/` | Project gallery from `_projects/` |
-| Blog | `/blog/` | Posts from `_posts/` |
-| About | `/about/` | Extended biography (`nav_highlight: true`) |
-| CV | `/cv/` | Resume from `_data/cv.yml` or `assets/json/resume.json` |
+| Page     | Path                   | Purpose                                               |
+| -------- | ---------------------- | ----------------------------------------------------- |
+| Home     | `/` (`_pages/home.md`) | Featured project, latest posts — not in navbar        |
+| Projects | `/projects/`           | Animated timeline from `_projects/`, year TOC sidebar |
+| Blog     | `/blog/`               | Posts from `_posts/`, year TOC sidebar                |
+| About    | `/about/`              | Intro, explore links, contact (`nav_highlight: true`) |
+| CV (PDF) | external link          | `_config.yml` → `cv_pdf`; `_pages/cv.md` navbar stub  |
 
 **Profile sidebar:** Configured in `_config.yml` under `profile_sidebar:` (photo, title, location, website, email, GitHub, LinkedIn, CV PDF). Rendered by `_includes/profile_sidebar.liquid` on every page when enabled. Display name uses `first_name`, `middle_name`, `last_name`.
 
-**Removed in this fork:** Publications, teaching, books pages; `jekyll-scholar`; `_bibliography/`.
+**Removed:** Publications, teaching, books, `jekyll-scholar`, `_bibliography/`, `_data/cv.yml`, `assets/json/resume.json`, `_layouts/cv.liquid`, `_includes/cv/`, `assets/rendercv/`, `render-cv.yml`.
 
 **Local dev:** After any `_config.yml` change, run `docker compose restart jekyll`. See [TROUBLESHOOTING.md](../../TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
 
@@ -195,12 +195,12 @@ profile_sidebar:
   email: you@example.com
   github_username: your-github-username
   linkedin_username: your-linkedin-username
-  cv_pdf: /assets/pdf/example_pdf.pdf
 ```
 
-- Name is built from `first_name`, `middle_name`, `last_name` in `_config.yml`
-- Replace `assets/img/prof_pic.jpg` (or change `image:` to another filename)
-- Run `docker compose restart jekyll` after config or image changes
+Note: `cv_pdf` is a **top-level** key in `_config.yml`, not inside `profile_sidebar`.
+
+- Name from `first_name`, `middle_name`, `last_name` in `_config.yml`
+- Run `docker compose restart jekyll` after config changes
 
 ### 3. Social Media & Contact (search/metadata)
 
@@ -215,15 +215,14 @@ profile_sidebar:
 - Home layout: `_layouts/home.liquid` — featured project + latest posts
 - About layout: `_layouts/about.liquid` — extended bio only
 
-### 5. CV/Resume
+### 5. CV (PDF-only)
 
-**Files:** `_data/cv.yml` (RenderCV format), `assets/json/resume.json` (JSONResume format), `assets/rendercv/` (configuration)
+**Files:** `_config.yml` (`cv_pdf`), `_pages/cv.md` (navbar stub), `_data/socials.yml`, `_includes/cv_pdf_url.liquid`
 
-- **Choose your format:** Users can maintain either RenderCV (`_data/cv.yml`) or JSONResume (`assets/json/resume.json`), or both simultaneously
-- **RenderCV (recommended):** Human-readable YAML format with automatic PDF generation via GitHub Actions, customizable styling via `assets/rendercv/` config files (`design.yaml`, `locale.yaml`, `settings.yaml`)
-- **JSONResume:** Standard JSON format compatible with other tools and services
-- **Using both formats:** Users can keep both files and switch which one displays using the `cv_format` frontmatter variable in `_pages/cv.md` (options: `rendercv` or `jsonresume`)
-- **Single format:** To use only one format, optionally delete the unused file (both are supported equally well)
+- Set `cv_pdf:` in `_config.yml` (Google Drive URL or `/assets/pdf/resume.pdf`)
+- Mirror in `_data/socials.yml` for search
+- Link in Markdown: `[Resume (PDF)]({% include cv_pdf_url.liquid %})`
+- No on-site CV page — RenderCV/JSONResume removed in this fork
 
 ### 6. Blog Posts
 
@@ -234,13 +233,13 @@ profile_sidebar:
 - Use Markdown for content
 - Support for math (MathJax), code highlighting, images, videos
 
-### 7. Projects
+### 7. Projects (timeline)
 
-**Files:** `_projects/*.md`
+**Files:** `_projects/*.md`, `_includes/project_timeline.liquid`, `_sass/_project-timeline.scss`, `assets/js/project-timeline.js`
 
-- Create project pages in `_projects/` directory
-- Add frontmatter: layout, title, description, img, importance
-- Support for categories and horizontal/grid display
+- Animated vertical timeline on `/projects/`, newest first, grouped by year
+- Frontmatter: `title`, `description`, `date`, `tags`, optional `github`, `img`
+- Media: `assets/img/projects/{year}/`, `assets/video/projects/{year}/`
 
 ### 8. News/Announcements
 
@@ -523,26 +522,26 @@ Help users avoid these frequent errors:
 
 ## Quick Reference Map
 
-| User wants to...        | Files to modify                                                     | Key documentation                  |
-| ----------------------- | ------------------------------------------------------------------- | ---------------------------------- |
-| Change personal info    | `_config.yml`, `_pages/about.md`                                    | CUSTOMIZE.md § Configuration       |
-| Add profile picture     | `assets/img/prof_pic.jpg`                                           | CUSTOMIZE.md § About page          |
-| Update CV               | `_data/cv.yml` (RenderCV) or `assets/json/resume.json` (JSONResume) | CUSTOMIZE.md § Modifying CV        |
-| Add blog post           | `_posts/YYYY-MM-DD-title.md`                                        | CUSTOMIZE.md § Blog posts          |
-| Create project          | `_projects/name.md`                                                 | CUSTOMIZE.md § Projects            |
-| Add news item           | `_news/announcement.md`                                             | CUSTOMIZE.md § Adding news         |
-| Change theme color      | `_sass/_variables.scss`, `_sass/_themes.scss`                       | THEMING.md                         |
-| Add social links        | `_data/socials.yml`                                                 | CUSTOMIZE.md § Social media        |
-| Set up analytics        | `_config.yml`                                                       | CUSTOMIZE.md & ANALYTICS.md        |
-| Enable/disable features | `_config.yml`                                                       | CUSTOMIZE.md § Configuration       |
-| Remove pages            | Delete from `_pages/`, update nav                                   | CUSTOMIZE.md § Removing content    |
-| Fix deployment issues   | `_config.yml` (url/baseurl)                                         | FAQ.md, INSTALL.md                 |
-| Test changes locally    | Docker setup                                                        | INSTALL.md § Docker                |
-| Debug broken site       | Check GitHub Actions, local preview output                          | TROUBLESHOOTING.md, FAQ.md         |
-| Add custom page         | Create `_pages/name.md`, update nav                                 | CUSTOMIZE.md § Creating pages      |
-| Customize fonts/spacing | `_sass/_variables.scss`                                             | CUSTOMIZE.md § Customization       |
-| Improve SEO             | `_config.yml`, `robots.txt`                                         | SEO.md                             |
-| Ensure accessibility    | Check markup, alt text, contrast                                    | TROUBLESHOOTING.md                 |
+| User wants to...        | Files to modify                               | Key documentation                |
+| ----------------------- | --------------------------------------------- | -------------------------------- |
+| Change personal info    | `_config.yml`, `_pages/about.md`              | CUSTOMIZE.md § Configuration     |
+| Add profile picture     | `assets/img/prof_pic.jpg`                     | CUSTOMIZE.md § About page        |
+| Update CV PDF           | `_config.yml` (`cv_pdf`), `_data/socials.yml` | CUSTOMIZE.md § PDF-only CV       |
+| Add blog post           | `_posts/YYYY-MM-DD-title.md`                  | CUSTOMIZE.md § Blog posts        |
+| Create project          | `_projects/name.md`                           | CUSTOMIZE.md § Creating projects |
+| Add news item           | `_news/announcement.md`                       | CUSTOMIZE.md § Adding news       |
+| Change theme color      | `_sass/_variables.scss`, `_sass/_themes.scss` | THEMING.md                       |
+| Add social links        | `_data/socials.yml`                           | CUSTOMIZE.md § Social media      |
+| Set up analytics        | `_config.yml`                                 | CUSTOMIZE.md & ANALYTICS.md      |
+| Enable/disable features | `_config.yml`                                 | CUSTOMIZE.md § Configuration     |
+| Remove pages            | Delete from `_pages/`, update nav             | CUSTOMIZE.md § Removing content  |
+| Fix deployment issues   | `_config.yml` (url/baseurl)                   | FAQ.md, INSTALL.md               |
+| Test changes locally    | Docker setup                                  | INSTALL.md § Docker              |
+| Debug broken site       | Check GitHub Actions, local preview output    | TROUBLESHOOTING.md, FAQ.md       |
+| Add custom page         | Create `_pages/name.md`, update nav           | CUSTOMIZE.md § Creating pages    |
+| Customize fonts/spacing | `_sass/_variables.scss`                       | CUSTOMIZE.md § Customization     |
+| Improve SEO             | `_config.yml`, `robots.txt`                   | SEO.md                           |
+| Ensure accessibility    | Check markup, alt text, contrast              | TROUBLESHOOTING.md               |
 
 ## Using Community Context in Your Responses
 

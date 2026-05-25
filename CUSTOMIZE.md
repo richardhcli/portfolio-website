@@ -2,7 +2,7 @@
 
 Here we will give you some tips on how to customize the website. One important thing to note is that **ALL** the changes you make should be done on the **main** branch of your repository. The `gh-pages` branch is automatically overwritten every time you make a change to the main branch.
 
-> **Portfolio fork:** This repository is customized for [Richard Li's portfolio](https://richardhcli.com). It uses **Projects → Blog → About → CV** navigation, a left **profile sidebar** (configured in `_config.yml`), and a separate **home** page at `/`. Publications, teaching, and books features from upstream al-folio have been removed. Sections below that reference BibTeX, `_bibliography/`, or teaching collections describe upstream al-folio and do not apply to this fork unless you re-add those features.
+> **Portfolio fork** for [richardhcli.com](https://richardhcli.com). Animated **project-log timeline**, year TOC sidebars, restructured **about** page, **PDF-only CV** (`cv_pdf` in `_config.yml`). Publications, teaching, books, RenderCV, and JSONResume removed. Sections referencing BibTeX, `_bibliography/`, or `_data/cv.yml` describe upstream al-folio only.
 
 > **Note for users without coding experience:** You do **not** need to understand the technology stack or have any coding background to create and customize your own website with al-folio. This template was specifically designed to be accessible to academics and researchers from all backgrounds. You can create a fully functional website by simply editing configuration files and adding content in Markdown, no coding required.
 
@@ -25,10 +25,8 @@ Here we will give you some tips on how to customize the website. One important t
     - [Build and Deployment](#build-and-deployment)
     - [Key Integration Points](#key-integration-points)
   - [Modifying the CV information](#modifying-the-cv-information)
-    - [RenderCV Format (Recommended)](#rendercv-format-recommended)
-    - [JSONResume Format](#jsonresume-format)
-    - [Using Both Formats Simultaneously](#using-both-formats-simultaneously)
-    - [Automatic PDF Generation (RenderCV only)](#automatic-pdf-generation-rendercv-only)
+    - [PDF-only CV (this fork)](#pdf-only-cv-this-fork)
+    - [Upstream al-folio CV formats (not used here)](#upstream-al-folio-cv-formats-not-used-here)
   - [Modifying the user and repository information](#modifying-the-user-and-repository-information)
     - [Configuring external service URLs](#configuring-external-service-urls)
   - [Creating new pages](#creating-new-pages)
@@ -65,7 +63,7 @@ Here we will give you some tips on how to customize the website. One important t
     - [How it works](#how-it-works)
     - [Configuration](#configuration-1)
     - [Disable related posts for a specific post](#disable-related-posts-for-a-specific-post)
-    - [Additional configuration in _config.yml](#additional-configuration-in-_configyml)
+    - [Additional configuration in \_config.yml](#additional-configuration-in-_configyml)
   - [Managing publication display](#managing-publication-display)
   - [Adding a Google Calendar](#adding-a-google-calendar)
     - [Basic usage](#basic-usage)
@@ -105,30 +103,25 @@ The project is structured as follows, focusing on the main components that you w
 
 ```txt
 .
-├── 📂 assets/
-│   ├── 📂 img/               profile photos and media
-│   ├── 📂 json/              resume.json (JSONResume)
-│   └── 📂 pdf/               CV PDF and downloads
-├── 📄 _config.yml            site config (includes profile_sidebar)
+├── 📄 _config.yml              site config (profile_sidebar, cv_pdf, features)
 ├── 📂 _data/
-│   ├── 📄 cv.yml             CV in RenderCV YAML format
-│   ├── 📄 repositories.yml   GitHub repos for repositories page
-│   └── 📄 socials.yml        social links (search/metadata)
+│   ├── 📄 socials.yml          social links + cv_pdf for search
+│   └── 📄 repositories.yml
 ├── 📂 _includes/
+│   ├── 📄 project_timeline.liquid   animated project log
+│   ├── 📄 blog_list_by_year.liquid  blog posts grouped by year
+│   ├── 📄 cv_pdf_url.liquid         résumé PDF link helper
 │   ├── 📄 profile_sidebar.liquid
-│   └── …                     header, footer, figure, etc.
-├── 📂 _layouts/
-│   ├── 📄 default.liquid     wraps pages with profile sidebar
-│   ├── 📄 home.liquid        homepage layout
-│   └── 📄 about.liquid       about page layout
-├── 📂 _pages/                static pages (home, about, blog, projects, cv)
-├── 📂 _posts/                blog posts
-├── 📂 _projects/             project entries
-├── 📂 _plugins/              custom Jekyll plugins
-└── 📂 _sass/
-    ├── 📄 _sidebar.scss      profile sidebar layout
-    ├── 📄 _navbar.scss       navigation (centered search)
-    └── …                     themes, layout, components, etc.
+│   └── …
+├── 📂 _pages/                  home, about, blog, projects, cv (navbar PDF stub)
+├── 📂 _posts/                  blog posts
+├── 📂 _projects/               project entries (shown on timeline)
+├── 📂 _sass/
+│   ├── 📄 _project-timeline.scss
+│   └── …
+└── 📂 assets/
+    ├── 📂 js/                  project-timeline.js, common.js (year TOC filter)
+    └── 📂 img/projects/        media by year (2025/, 2026/, …)
 ```
 
 ## Configuration
@@ -310,64 +303,18 @@ Understanding how these technologies work together will help you customize al-fo
 
 ## Modifying the CV information
 
-Your CV can be created using one of two formats. Choose the format that works best for you, or use both simultaneously by switching between them:
+### PDF-only CV (this fork)
 
-### RenderCV Format (Recommended)
+No on-site CV page. The résumé is an external PDF linked from navbar, sidebar, about, home, and search.
 
-[`_data/cv.yml`](_data/cv.yml) uses the [RenderCV](https://rendercv.com/) YAML format, which is human-readable and designed specifically for generating professional resumes. This format also enables optional automatic PDF generation via GitHub Actions.
+1. Set in [`_config.yml`](_config.yml): `cv_pdf: https://drive.google.com/file/d/.../view` (or `/assets/pdf/resume.pdf`)
+2. Mirror in [`_data/socials.yml`](_data/socials.yml): `cv_pdf: <same URL>`
+3. [`_pages/cv.md`](_pages/cv.md) is a navbar stub with external `permalink:`
+4. Link in Markdown: `[Resume (PDF)]({% include cv_pdf_url.liquid %})`
 
-**If you choose this format:**
+**Removed:** `_data/cv.yml`, `assets/json/resume.json`, `_layouts/cv.liquid`, `_includes/cv/`, `assets/rendercv/`, `.github/workflows/render-cv.yml`.
 
-1. Edit your CV data in [`_data/cv.yml`](_data/cv.yml)
-2. Optionally customize how the PDF is styled by editing:
-   - [`assets/rendercv/design.yaml`](assets/rendercv/design.yaml) — Design and styling
-   - [`assets/rendercv/locale.yaml`](assets/rendercv/locale.yaml) — Localization and formatting
-   - [`assets/rendercv/settings.yaml`](assets/rendercv/settings.yaml) — RenderCV settings
-3. To display only this format, delete [`assets/json/resume.json`](assets/json/resume.json) (optional)
-
-### JSONResume Format
-
-[`assets/json/resume.json`](assets/json/resume.json) uses the [JSONResume](https://jsonresume.org/) standard format, which is compatible with other tools and services.
-
-**If you choose this format:**
-
-1. Edit your CV data in [`assets/json/resume.json`](assets/json/resume.json)
-2. To display only this format, delete [`_data/cv.yml`](_data/cv.yml) (optional)
-
-### Using Both Formats Simultaneously
-
-You can keep both [`_data/cv.yml`](_data/cv.yml) and [`assets/json/resume.json`](assets/json/resume.json) in your repository and switch between them on your website by setting the `cv_format` frontmatter variable in [`_pages/cv.md`](_pages/cv.md):
-
-```yaml
----
-layout: cv
-cv_format: rendercv # options: rendercv or jsonresume
----
-```
-
-Change `rendercv` to `jsonresume` to display the JSONResume format instead.
-
-### Automatic PDF Generation (RenderCV only)
-
-If you use the RenderCV format, a GitHub Actions workflow can automatically generate a PDF version of your CV whenever you push changes to [`_data/cv.yml`](_data/cv.yml). The PDF is saved to `assets/rendercv/rendercv_output/`.
-
-**To link the auto-generated PDF to your CV page:**
-
-Set the `cv_pdf` variable in the frontmatter of [`_pages/cv.md`](_pages/cv.md) to point to the generated PDF:
-
-```yaml
----
-layout: cv
-cv_pdf: /assets/rendercv/rendercv_output/CV.pdf
-cv_format: rendercv
----
-```
-
-This will add a download button on your CV page that links to the PDF. (The exact filename depends on your RenderCV settings—check the output directory after the first workflow run to see the generated PDF name.)
-
-**To disable automatic PDF generation:**
-
-Delete or comment out the [`.github/workflows/render-cv.yml`](.github/workflows/render-cv.yml) workflow file.
+> The RenderCV / JSONResume sections below describe **upstream al-folio** and do not apply unless you restore those files.
 
 ## Modifying the user and repository information
 
@@ -411,7 +358,7 @@ Note that `posts` is also a collection, but it is a default collection created a
 
 ## Creating new projects
 
-You can create new projects by adding new Markdown files in the [\_projects](_projects/) directory. The easiest way to do this is to copy an existing project and modify it.
+Add Markdown files in [`_projects/`](_projects/). They appear on the `/projects/` animated timeline (newest first, grouped by year). Key frontmatter: `title`, `description`, `date` (controls sort/year grouping), `tags` (rendered as `#tag` chips), optional `github` (icon link), optional `img`. Store media in `assets/img/projects/{year}/`.
 
 ## Adding some news
 

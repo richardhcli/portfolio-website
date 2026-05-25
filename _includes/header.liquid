@@ -109,7 +109,16 @@
                   {% if p.nav_highlight %}
                     {% assign nav_link_class = nav_link_class | append: ' nav-link-highlight' %}
                   {% endif %}
-                  <a class="{{ nav_link_class }}" href="{{ url | relative_url }}">
+                  <a
+                    class="{{ nav_link_class }}"
+                    {% if url contains '://' %}
+                      href="{{ url }}"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    {% else %}
+                      href="{{ url | relative_url }}"
+                    {% endif %}
+                  >
                     {{- p.title }}
                     {% if page.url contains p.url %}
                       <span class="sr-only">(current)</span>

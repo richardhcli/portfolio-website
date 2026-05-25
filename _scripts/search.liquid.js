@@ -40,13 +40,23 @@ ninja.data = [
       {%- else -%}
         {
           {%- assign title = p.title | escape | strip -%}
-          {%- if p.permalink contains "/blog/" -%}{%- assign url = "/blog/" -%} {%- else -%}{%- assign url = p.url -%}{%- endif -%}
+          {%- if p.permalink contains '://' -%}
+            {%- assign url = p.permalink -%}
+          {%- elsif p.permalink contains '/blog/' -%}
+            {%- assign url = '/blog/' -%}
+          {%- else -%}
+            {%- assign url = p.url -%}
+          {%- endif -%}
           id: "nav-{{ title | slugify }}",
           title: "{{ title | truncatewords: 13 }}",
           description: "{{ p.description | strip_html | strip_newlines | escape | strip }}",
           section: "Navigation",
           handler: () => {
-            window.location.href = "{{ url | relative_url }}";
+            {% if p.permalink contains '://' %}
+              window.open("{{ p.permalink }}", "_blank");
+            {% else %}
+              window.location.href = "{{ url | relative_url }}";
+            {% endif %}
           },
         },
       {%- endif -%}
@@ -122,7 +132,11 @@ ninja.data = [
         {%- when "cv_pdf" -%}
           {%- assign social_id = "social-cv" -%}
           {%- assign social_title = "CV" -%}
-          {%- capture social_url %}"{{ social[1] | relative_url }}"{% endcapture -%}
+          {%- if social[1] contains '://' -%}
+            {%- capture social_url %}"{{ social[1] }}"{% endcapture -%}
+          {%- else -%}
+            {%- capture social_url %}"{{ social[1] | relative_url }}"{% endcapture -%}
+          {%- endif -%}
         {%- when "dblp_url" -%}
           {%- assign social_id = "social-dblp" -%}
           {%- assign social_title = "DBLP" -%}

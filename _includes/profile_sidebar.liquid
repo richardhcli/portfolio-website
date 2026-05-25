@@ -23,7 +23,11 @@
     {% endif %}
 
     <div class="profile-sidebar__identity">
-      <h2 class="profile-sidebar__name">{{ site.first_name }}{% if site.middle_name %} {{ site.middle_name }}{% endif %} {{ site.last_name }}</h2>
+      <h2 class="profile-sidebar__name">
+        {{ site.first_name -}}
+        {%- if site.middle_name %} {{ site.middle_name }}{% endif %}
+        {{ site.last_name }}
+      </h2>
       {% if sidebar.title %}
         <p class="profile-sidebar__title">{{ sidebar.title }}</p>
       {% endif %}
@@ -54,7 +58,9 @@
       {% if sidebar.github_username %}
         <li class="profile-sidebar__contact-item">
           <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></span>
-          <a class="profile-sidebar__contact-label" href="https://github.com/{{ sidebar.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="profile-sidebar__contact-label" href="https://github.com/{{ sidebar.github_username }}" target="_blank" rel="noopener noreferrer"
+            >GitHub</a
+          >
         </li>
       {% endif %}
 
@@ -72,12 +78,12 @@
         </li>
       {% endif %}
 
-      {% if sidebar.cv_pdf %}
+      {% if site.cv_pdf %}
         <li class="profile-sidebar__contact-item">
           <span class="profile-sidebar__contact-icon" aria-hidden="true"><i class="ai ai-cv"></i></span>
           <a
             class="profile-sidebar__contact-label"
-            href="{% if sidebar.cv_pdf contains '://' %}{{ sidebar.cv_pdf }}{% else %}{{ sidebar.cv_pdf | relative_url }}{% endif %}"
+            href="{% include cv_pdf_url.liquid %}"
             target="_blank"
             rel="noopener noreferrer"
           >

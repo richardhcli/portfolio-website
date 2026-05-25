@@ -23,6 +23,7 @@ baseurl: # the subpath of your site, e.g. /blog/. Leave blank for root
 last_updated: true # set to true if you want to display last updated in the footer
 impressum_path: # set to path to include impressum link in the footer, use the same path as permalink in a page, helps to conform with EU GDPR
 back_to_top: true # set to false to disable the back to top button
+cv_pdf: https://drive.google.com/file/d/1nKXqQy7LzwMQU_mMiYjSvF6az85v4pTR/view?usp=drive_link
 
 # -----------------------------------------------------------------------------
 # Theme
@@ -69,7 +70,6 @@ profile_sidebar:
   email: richardhcli@gmail.com
   github_username: richardhcli
   linkedin_username: richardhcli
-  cv_pdf: /assets/pdf/Richard_Li_Resume.pdf
 
 # Dimensions
 max_width: 1100px
@@ -579,19 +579,4 @@ third_party_libraries:
 # Get external JSON data
 # -----------------------------------------------------------------------------
 
-jekyll_get_json:
-  - data: resume
-    json: assets/json/resume.json # it can also be an url
-
-jsonresume:
-  - basics
-  - work
-  - education
-  - projects
-  - volunteer
-  - awards
-  - certificates
-  - skills
-  - languages
-  - interests
-  - references
+# jekyll_get_json / jsonresume removed — CV is PDF-only via site.cv_pdf

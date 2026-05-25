@@ -17,79 +17,205 @@
 
 .project-timeline-section {
   padding: 2rem 0 3rem;
+  --project-grid-line: color-mix(in srgb, var(--global-divider-color) 8%, transparent);
+  background-image:
+    linear-gradient(var(--project-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--project-grid-line) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: center top;
 }
 
 .project-timeline {
   position: relative;
   max-width: 800px;
   margin: 0 auto;
-  padding-left: 2rem;
+  padding-left: 0.25rem;
 }
 
-.project-timeline::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--global-theme-color), var(--global-divider-color));
+.project-timeline > h2.year-toc-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 2rem 0 1.25rem;
+  padding-top: 0.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.project-timeline > h2.year-toc-heading:first-child {
+  margin-top: 0;
 }
 
 .project-timeline-item {
-  position: relative;
-  padding-bottom: 2.5rem;
-  padding-left: 2rem;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+  --stagger-index: 0;
+  --rail-width: 2.5rem;
+  --node-size: 12px;
+  --node-offset: 0.45rem;
+  --segment-gap: 0.35rem;
+  --item-gap: 2.25rem;
+  --segment-width: 2px;
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --stagger-step: 0.07s;
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  column-gap: 1.25rem;
+  align-items: stretch;
+  padding-bottom: var(--item-gap);
 }
 
 .project-timeline-item:last-child {
   padding-bottom: 0;
+
+  .project-timeline-segment {
+    display: none;
+  }
 }
 
-.project-timeline-item-visible,
-.project-timeline-item:nth-child(1),
-.project-timeline-item:nth-child(2) {
-  opacity: 1;
-  transform: translateX(0);
+.project-timeline-rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  min-height: 100%;
+  padding-top: var(--node-offset);
 }
 
-.project-timeline-marker {
-  position: absolute;
-  left: -2.5rem;
-  top: 0.25rem;
-  width: 14px;
-  height: 14px;
+.project-timeline-node {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: var(--node-size);
+  height: var(--node-size);
   border-radius: 50%;
-  background: var(--global-theme-color);
-  border: 3px solid var(--global-bg-color);
-  box-shadow: 0 0 0 3px var(--global-theme-color);
+  background: var(--global-bg-color);
+  border: 2px solid var(--global-theme-color);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--global-theme-color) 0%, transparent);
+  transform: scale(0);
+  transition:
+    transform 0.45s var(--ease-spring),
+    box-shadow 0.55s ease,
+    border-color 0.35s ease;
+  transition-delay: calc(var(--stagger-index) * var(--stagger-step));
+}
+
+.project-timeline-node::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--global-theme-color) 35%, transparent);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s var(--ease-out-expo);
+  transition-delay: calc(0.08s + var(--stagger-index) * var(--stagger-step));
+}
+
+.project-timeline-segment {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--node-offset) + var(--node-size) + var(--segment-gap));
+  width: var(--segment-width);
+  height: calc(100% + var(--item-gap) - var(--node-size) / 2 - var(--segment-gap));
+  border-radius: 999px;
+  background: linear-gradient(to bottom, var(--global-theme-color), color-mix(in srgb, var(--global-divider-color) 70%, var(--global-theme-color)));
+  transform-origin: top center;
+  transform: translateX(-50%) scaleY(0);
+  opacity: 0.85;
+  transition: transform 0.65s var(--ease-out-expo);
+  transition-delay: calc(0.28s + var(--stagger-index) * var(--stagger-step));
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Extend through year headings that sit between modules */
+.project-timeline-item:has(+ h2.year-toc-heading) .project-timeline-segment {
+  height: calc(100% + var(--item-gap) - var(--node-size) / 2 - var(--segment-gap) + 3.5rem);
+}
+
+@keyframes project-timeline-node-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px color-mix(in srgb, var(--global-theme-color) 35%, transparent);
+  }
+
+  50% {
+    box-shadow: 0 0 16px color-mix(in srgb, var(--global-theme-color) 55%, transparent);
+  }
 }
 
 .project-timeline-content {
+  opacity: 0;
+  transform: translateX(18px);
   background: var(--global-card-bg-color);
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid var(--global-divider-color);
+  border-left: 3px solid color-mix(in srgb, var(--global-theme-color) 55%, var(--global-divider-color));
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    opacity 0.55s var(--ease-out-expo),
+    transform 0.55s var(--ease-out-expo),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+  transition-delay: calc(0.16s + var(--stagger-index) * var(--stagger-step));
+}
+
+.project-timeline-item-visible {
+  .project-timeline-node {
+    transform: scale(1);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--global-theme-color) 45%, transparent);
+    animation: project-timeline-node-glow 2.4s ease-in-out calc(0.45s + var(--stagger-index) * var(--stagger-step)) infinite;
+  }
+
+  .project-timeline-node::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .project-timeline-segment {
+    transform: translateX(-50%) scaleY(1);
+  }
+
+  .project-timeline-content {
+    opacity: 1;
+    transform: translateX(0);
+    border-left-color: var(--global-theme-color);
+  }
 }
 
 .project-timeline-content:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--global-theme-color) 18%, transparent);
+  border-left-color: var(--global-hover-color);
+}
+
+.project-timeline-item-visible .project-timeline-content:hover {
+  transform: translateY(-2px);
+}
+
+.project-timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .project-timeline-content time {
   display: inline-block;
-  font-size: 0.875rem;
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  font-size: 0.8125rem;
   color: var(--global-text-color-light);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+.project-timeline-github {
+  color: var(--global-text-color-light);
+  font-size: 1rem;
+  line-height: 1;
+
+  &:hover {
+    color: var(--global-theme-color);
+  }
 }
 
 .project-timeline-content h3 {
@@ -121,22 +247,50 @@
   gap: 0.35rem;
 }
 
+.project-timeline-tag {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--global-theme-color);
+  background: color-mix(in srgb, var(--global-theme-color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--global-theme-color) 25%, transparent);
+  border-radius: 4px;
+  padding: 0.15rem 0.45rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-timeline-node,
+  .project-timeline-segment,
+  .project-timeline-content,
+  .project-timeline-node::after {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .project-timeline-item {
+    .project-timeline-node,
+    .project-timeline-segment,
+    .project-timeline-content {
+      opacity: 1;
+      transform: none;
+    }
+
+    .project-timeline-node {
+      box-shadow: 0 0 12px color-mix(in srgb, var(--global-theme-color) 45%, transparent);
+    }
+
+    .project-timeline-segment {
+      transform: translateX(-50%) scaleY(1);
+    }
+  }
+}
+
 @media (max-width: 768px) {
   .project-section-header h1 {
     font-size: 2rem;
   }
 
-  .project-timeline {
-    padding-left: 1rem;
-  }
-
   .project-timeline-item {
-    padding-left: 1.5rem;
-  }
-
-  .project-timeline-marker {
-    left: -1.5rem;
-    width: 10px;
-    height: 10px;
+    --rail-width: 2rem;
+    column-gap: 1rem;
   }
 }

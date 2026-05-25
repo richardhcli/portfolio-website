@@ -3,27 +3,28 @@
 A Jekyll portfolio site (forked from [al-folio](https://github.com/alshedivat/al-folio)) focused on **projects**, **blog**, **about**, and **CV** — not academic publications or teaching pages.
 
 ## prompt template:
+
 ```
 @.github/agents/customize.agent.md
 Follow the customization agent instructions. I want to:
-- make a custom jekyll theme (color palete). 
+- make a custom jekyll theme (color palete).
 
-What is the best way to do this? 
+What is the best way to do this?
 ```
 
 ## Site structure
 
-| URL | Source | Notes |
-| --- | --- | --- |
-| `/` | `_pages/home.md` | Featured project, latest posts, link to About — not in navbar |
-| `/projects/` | `_pages/projects.md` + `_projects/` | Project gallery |
-| `/blog/` | `_pages/blog.md` + `_posts/` | Technical writing |
-| `/about/` | `_pages/about.md` | Extended bio (orange nav highlight) |
-| `/cv/` | `_pages/cv.md` + `_data/cv.yml` | RenderCV / JSONResume |
+| URL          | Source                              | Notes                                                         |
+| ------------ | ----------------------------------- | ------------------------------------------------------------- |
+| `/`          | `_pages/home.md`                    | Featured project, latest posts, link to About — not in navbar |
+| `/projects/` | `_pages/projects.md` + `_projects/` | Vertical **project log** timeline (animated rail, year TOC)   |
+| `/blog/`     | `_pages/blog.md` + `_posts/`        | Technical writing; posts grouped by year (year TOC)           |
+| `/about/`    | `_pages/about.md`                   | Intro, explore links, contact (orange nav highlight)          |
+| CV (PDF)     | `_config.yml` → `cv_pdf`            | External PDF link (navbar, sidebar, search); no `/cv/` page   |
 
-**Profile sidebar:** Left column on all pages when `profile_sidebar.enabled: true`. Configured entirely in `_config.yml` under `profile_sidebar:` (photo, title, location, contact links). Name comes from `first_name`, `middle_name`, `last_name`. Template: `_includes/profile_sidebar.liquid`.
+**Profile sidebar:** Left column on all pages when `profile_sidebar.enabled: true`. Configured in `_config.yml` under `profile_sidebar:` (photo, title, location, contact links). Global résumé PDF URL: top-level `cv_pdf` in `_config.yml`. Name comes from `first_name`, `middle_name`, `last_name`. Template: `_includes/profile_sidebar.liquid`.
 
-**After editing `_config.yml`:** Restart Jekyll — see [TROUBLESHOOTING.md § Changes to _config.yml not appearing locally](TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
+**After editing `_config.yml`:** Restart Jekyll — see [TROUBLESHOOTING.md § Changes to \_config.yml not appearing locally](TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
 
 ## Quick Links by Role
 
@@ -91,12 +92,12 @@ When modifying `_config.yml`, these **must be updated together**:
 - **Git & Commits:** For commit message format and Git practices, see [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md).
 - **Code-Specific Instructions:** Consult the relevant instruction file for your code type.
 
-| File Type                                     | Instruction File                                                                                |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| Markdown content (`_posts/`, `_pages/`, etc.) | [markdown-content.instructions.md](.github/instructions/markdown-content.instructions.md)       |
-| YAML config (`_config.yml`, `_data/`)         | [yaml-configuration.instructions.md](.github/instructions/yaml-configuration.instructions.md)   |
-| Liquid templates (`_includes/`, `_layouts/`)  | [liquid-templates.instructions.md](.github/instructions/liquid-templates.instructions.md)       |
-| JavaScript (`_scripts/`)                      | [javascript-scripts.instructions.md](.github/instructions/javascript-scripts.instructions.md)   |
+| File Type                                     | Instruction File                                                                              |
+| --------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Markdown content (`_posts/`, `_pages/`, etc.) | [markdown-content.instructions.md](.github/instructions/markdown-content.instructions.md)     |
+| YAML config (`_config.yml`, `_data/`)         | [yaml-configuration.instructions.md](.github/instructions/yaml-configuration.instructions.md) |
+| Liquid templates (`_includes/`, `_layouts/`)  | [liquid-templates.instructions.md](.github/instructions/liquid-templates.instructions.md)     |
+| JavaScript (`_scripts/`)                      | [javascript-scripts.instructions.md](.github/instructions/javascript-scripts.instructions.md) |
 
 ## Common Issues
 
