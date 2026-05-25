@@ -1,0 +1,14 @@
+# Production preview: mirrors GitHub Actions build locally.
+# Usage: docker compose -f docker-compose.prod-preview.yml up
+# Preview at http://localhost:8081
+services:
+  prod-preview:
+    image: amirpourmand/al-folio:v0.16.3
+    volumes:
+      - .:/srv/jekyll
+    ports:
+      - "8081:8081"
+    working_dir: /srv/jekyll
+    command: >
+      bash -c "apt-get update -qq && apt-get install -y -qq npm > /dev/null &&
+               npm ci && bash bin/build-production.sh && npx serve _site -l 8081"

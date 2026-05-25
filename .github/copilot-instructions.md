@@ -22,7 +22,7 @@
 - `classifier-reborn` – Related posts calculation
 - `jekyll-archives-v2` – Archive page generation
 - `jekyll-jupyter-notebook` – Jupyter notebook embedding
-- `jekyll-minifier` – CSS/JS minification
+- `jekyll-minifier` – HTML minification only (`compress_css: false`; Sass handles CSS)
 - `jekyll-paginate-v2` – Pagination (disabled on blog page; single scrollable list)
 - `jekyll-tabs` – Tab UI components
 - `jekyll-toc` – Table of contents generation
@@ -82,7 +82,7 @@ bundle exec jekyll serve --port 4000   # Run at http://localhost:4000
   - Docker: Installed automatically
   - Local: `sudo apt-get install imagemagick` (Linux) or `brew install imagemagick` (Mac)
 - **nbconvert must be upgraded before build** – `pip3 install --upgrade nbconvert`
-- **Always set JEKYLL_ENV=production for production builds** – Required for CSS/JS minification
+- **Always set JEKYLL_ENV=production for production builds** – `bin/build-production.sh` handles this automatically
 
 ## Project Layout & Key Files
 
@@ -118,11 +118,9 @@ When making changes:
 ### GitHub Workflows (in `.github/workflows/`)
 
 - **deploy.yml** – Main deployment workflow (runs on push/PR to main/master)
-  - Sets up Ruby 3.3.5, Python 3.13
-  - Installs imagemagick, nbconvert
-  - Runs `bundle exec jekyll build` with JEKYLL_ENV=production
-  - Runs purgecss for CSS optimization
-  - Commits built site to gh-pages branch
+  - Sets up Ruby 3.3.5, Python 3.13; runs `npm ci`
+  - `JEKYLL_ENV=production` → `jekyll build` → `bin/build-production-css.sh` (PurgeCSS + CSS validator)
+  - Commits built `_site` to gh-pages branch
   - **Triggers on:** Changes to site files, assets, config (NOT documentation files alone)
 - **prettier.yml** – Code formatting validation (mandatory)
   - Runs prettier on all files
@@ -140,28 +138,17 @@ When making changes:
 
 **You must run these locally before pushing:**
 
-1. **Prettier formatting (mandatory):**
+1. **Prettier formatting (mandatory):** `npx prettier . --write`
+2. **Dev verify:** `docker compose up` → http://localhost:8080
+3. **Production verify (if CSS/JS/Liquid changed):**
 
 ```bash
-npm install --save-dev prettier @shopify/prettier-plugin-liquid
-npx prettier . --write
-```
+# Docker (no local Ruby/Node needed):
+docker compose -f docker-compose.prod-preview.yml up
+# http://localhost:8081 — mirrors GitHub Actions output
 
-2. **Local build test with Jekyll:**
-
-```bash
-docker compose pull && docker compose up
-# Let it build (wait 30-60 seconds)
-# Visit http://localhost:8080 and verify site renders correctly
-# Exit with Ctrl+C
-```
-
-3. **Or run full build simulation:**
-
-```bash
-docker compose up --build
-bundle exec jekyll build
-# Check for errors in output
+# Or with local Ruby + Node:
+npm run build:production && npm run preview:production
 ```
 
 ## Common Pitfalls & Workarounds
@@ -211,6 +198,14 @@ bundle exec jekyll build
 - **Problem:** Profile sidebar, theme, or URL settings unchanged after editing `_config.yml`
 - **Cause:** Jekyll loads config at startup; `--watch` does not reload `_config.yml`
 - **Solution:** `docker compose restart jekyll`, then hard-refresh the browser. See [TROUBLESHOOTING.md](../TROUBLESHOOTING.md#changes-to-_configyml-not-appearing-locally).
+
+### Production-only CSS Breaks (works locally, broken on GitHub Pages)
+
+- **Cause:** Dev mode skips PurgeCSS and jekyll-minifier; production applies both.
+- **PurgeCSS:** Can strip compound selectors (e.g. `.parent:last-child .child { display:none }` → `.child { display:none }`). Fix: add classes to `scripts/purgecss-safelist.js` or use conditional HTML instead of CSS `display:none` with pseudo-parent selectors.
+- **jekyll-minifier:** `compress_css` is **off** (`_config.yml`). Never re-enable — Sass `style: compressed` is sufficient. Re-enabling breaks CSS custom properties.
+- **JS state classes:** Prefer `-visible` / `-active` suffixes (auto-safelisted by `scripts/purgecss-safelist.js`).
+- **Catch before push:** Run production preview — `docker compose -f docker-compose.prod-preview.yml up` or `npm run build:production`.
 
 ### Gemfile.lock Out of Sync (CI deploy failure)
 

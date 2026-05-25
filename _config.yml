@@ -198,6 +198,7 @@ exclude:
   - Dockerfile
   - docker-compose.yml
   - docker-compose-slim.yml
+  - docker-compose.prod-preview.yml
   - FAQ.md
   - Gemfile
   - Gemfile.lock
@@ -207,6 +208,7 @@ exclude:
   - package.json
   - package-lock.json
   - purgecss.config.js
+  - scripts/
   - README.md
   - readme_preview/
   - vendor
@@ -255,9 +257,9 @@ sass:
 # -----------------------------------------------------------------------------
 
 jekyll-minifier:
-  compress_javascript: false # set to false since we are using terser as the js minifier
-  # main.css is already compressed by Sass; re-minifying breaks CSS custom props (e.g. --node-offset → invalid calc)
-  exclude: ["robots.txt", "assets/js/search/*.js", "assets/css/main.css"]
+  compress_css: false # Sass (style: compressed) is the only CSS minifier
+  compress_javascript: false # jekyll-terser handles JS already
+  exclude: ["robots.txt", "assets/js/search/*.js"]
 
 # -----------------------------------------------------------------------------
 # Terser

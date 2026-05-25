@@ -39,45 +39,34 @@ What is the best way to do this?
 
 ## Essential Commands
 
-### Local Development (Docker)
-
-The recommended approach is using Docker.
+### Workflow 1 — Fast Dev (everyday)
 
 ```bash
-# Initial setup & start dev server
-docker compose pull && docker compose up
-# Site runs at http://localhost:8080
+docker compose up              # http://localhost:8080 — livereload
+docker compose restart jekyll   # after _config.yml changes
+docker compose down             # stop & free port
+```
 
-# Rebuild after changing dependencies or Dockerfile
-docker compose up --build
+### Workflow 2 — Production Preview (before pushing CSS/JS/Liquid changes)
 
-# Restart after _config.yml changes (profile sidebar, theme, url, etc.)
-docker compose restart jekyll
+Mirrors GitHub Actions (PurgeCSS + CSS validation). Catches production-only bugs.
 
-# Stop containers and free port 8080
-docker compose down
+```bash
+# Option A: inside Docker (no local Ruby/Node needed)
+docker compose -f docker-compose.prod-preview.yml up
+# http://localhost:8081
+
+# Option B: if you have Ruby + Node locally
+npm ci
+npm run build:production
+npm run preview:production   # http://localhost:8081
 ```
 
 ### Pre-Commit Checklist
 
-Before every commit, you **must** run these steps:
-
-1.  **Format Code:**
-    ```bash
-    # (First time only)
-    npm install --save-dev prettier @shopify/prettier-plugin-liquid
-    # Format all files
-    npx prettier . --write
-    ```
-2.  **Build Locally & Verify:**
-
-    ```bash
-    # Rebuild the site
-    docker compose up --build
-
-    # Verify by visiting http://localhost:8080.
-    # Check navigation, pages, images, and dark mode.
-    ```
+1. **Format:** `npx prettier . --write`
+2. **Dev verify:** `docker compose up` — check http://localhost:8080
+3. **Production verify (if CSS/JS/Liquid changed):** run Workflow 2 above
 
 ## Critical Configuration
 
