@@ -344,7 +344,7 @@ Once deployed, update the URLs above to point to your custom deployment.
 
 ## Creating new pages
 
-You can create new pages by adding new Markdown files in the [\_pages](_pages/) directory. The easiest way to do this is to copy an existing page and modify it. You can choose the layout of the page by changing the [layout](https://jekyllrb.com/docs/layouts/) attribute in the [frontmatter](https://jekyllrb.com/docs/front-matter/) of the Markdown file, and also the path to access it by changing the [permalink](https://jekyllrb.com/docs/permalinks/) attribute. You can also add new layouts in the [\_layouts](_layouts/) directory if you feel the need for it.
+You can create new pages by adding files in [\_pages](_pages/). Copy an existing page and adjust `layout` and `permalink` in the front matter. Use `.md` for Markdown content; use `.html` when the page is mostly Liquid/HTML (see `_pages/blog.html`, `_pages/projects.html`).
 
 ## Creating new blog posts
 
@@ -406,7 +406,7 @@ To create a new collection, follow these steps. We will create a `courses` colle
 
 3. **Create a landing page for your collection**
 
-   Add a Markdown file in `_pages/` (e.g., `courses.md`) that will serve as the main page for your collection. You can use [\_pages/projects.md](_pages/projects.md) or [\_pages/books.md](_pages/books.md) as a template and adapt it for your needs.
+   Add a page file in `_pages/` (e.g., `courses.md`) that will serve as the main page for your collection. You can use [\_pages/projects.html](_pages/projects.html) as a template and adapt it for your needs.
 
    In your landing page, access your collection using the `site.COLLECTION_NAME` variable:
 
@@ -1045,7 +1045,7 @@ Since this template has a lot of content, you may want to remove some of it. The
 ```yml
 exclude:
   - _news/announcement_*.md
-  - _pages/blog.md
+  - _pages/blog.html
   - _posts/
   - _projects/?_project.md
   - assets/jupyter/blog.ipynb
@@ -1058,7 +1058,7 @@ Here is a list of the main components that you may want to delete, and how to do
 To remove the blog, you have to:
 
 - delete [\_posts](_posts/) directory
-- delete blog page [\_pages/blog.md](_pages/blog.md)
+- delete blog page [\_pages/blog.html](_pages/blog.html)
 - remove reference to blog page in our [\_pages/dropdown.md](_pages/dropdown.md)
 - remove the `latest_posts` part in [\_pages/about.md](_pages/about.md)
 - remove the `Blog` section in the [\_config.yml](_config.yml) file and the related parts, like the `jekyll-archives`
@@ -1086,7 +1086,7 @@ To remove the news section, you can:
 To remove the projects, you can:
 
 - delete the [\_projects](_projects/) directory
-- delete the projects page [\_pages/projects.md](_pages/projects.md)
+- delete the projects page [\_pages/projects.html](_pages/projects.html)
 - remove reference to projects page in our [\_pages/dropdown.md](_pages/dropdown.md)
 - remove projects part in the `Collections` section in the [\_config.yml](_config.yml) file
 

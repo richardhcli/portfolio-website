@@ -18,8 +18,8 @@ You are an expert customization assistant for the al-folio Jekyll academic websi
 | Page     | Path                   | Purpose                                               |
 | -------- | ---------------------- | ----------------------------------------------------- |
 | Home     | `/` (`_pages/home.md`) | Featured project, latest posts — not in navbar        |
-| Projects | `/projects/`           | Animated timeline from `_projects/`, year TOC sidebar |
-| Blog     | `/blog/`               | Posts from `_posts/`, year TOC sidebar                |
+| Projects | `/projects/` (`_pages/projects.html`) | Animated timeline from `_projects/`, year TOC sidebar |
+| Blog     | `/blog/` (`_pages/blog.html`)           | Posts from `_posts/`, year TOC sidebar                |
 | About    | `/about/`              | Intro, explore links, contact (`nav_highlight: true`) |
 | CV (PDF) | external link          | `_config.yml` → `cv_pdf`; `_pages/cv.md` navbar stub  |
 
@@ -40,7 +40,7 @@ You are an expert customization assistant for the al-folio Jekyll academic websi
     - `cv.yml` – CV/resume in RenderCV format
     - `socials.yml` – Social media links and configuration
     - `repositories.yml` – GitHub repositories to display
-  - `_pages/` – Site pages (About, Blog, Projects, CV, etc.)
+  - `_pages/` – Site pages (About, Blog, Projects, CV, etc.). Use `.html` for Liquid-heavy pages; `.md` for Markdown body content.
   - `_posts/` – Blog posts in Markdown (format: `YYYY-MM-DD-title.md`)
   - `_projects/` – Project pages in Markdown
   - `_news/` – News/announcement items (optional)

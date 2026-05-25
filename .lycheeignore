@@ -4,7 +4,7 @@
 .github/instructions/yaml-configuration.instructions.md
 _books/the_godfather.md
 _pages/404.md
-_pages/blog.md
+_pages/blog.html
 _posts/2018-12-22-distill.md
 _posts/2023-04-24-videos.md
 AGENTS.md

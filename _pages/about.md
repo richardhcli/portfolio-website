@@ -5,7 +5,7 @@ permalink: /about/
 nav: true
 nav_order: 3
 nav_highlight: true
-subtitle: Machine learning architecture, applied psychology, and pattern recognition
+description: Machine learning architecture, applied psychology, and pattern recognition
 ---
 
 I'm **Richard Li**, focused on machine learning architecture — the intersection of applied psychology, applied philosophy, and pattern recognition/optimization.

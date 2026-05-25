@@ -187,10 +187,12 @@ nav[data-toggle="toc"] {
   .nav > li > a {
     color: var(--global-text-color);
     font-size: 0.75rem;
+    padding: 4px 0.35rem;
 
     &:hover {
       color: var(--global-hover-color);
       border-left-color: var(--global-hover-color);
+      padding-left: calc(0.35rem - 1px);
     }
   }
 
@@ -198,11 +200,18 @@ nav[data-toggle="toc"] {
     color: var(--global-theme-color);
     border-left-color: var(--global-theme-color);
     font-size: 0.75rem;
+    padding-left: calc(0.35rem - 1px);
 
     &:hover {
       color: var(--global-hover-color);
       border-left-color: var(--global-hover-color);
     }
+  }
+}
+
+.page-with-year-toc nav[data-toggle="toc"] {
+  .nav > li > a {
+    white-space: nowrap;
   }
 }
 

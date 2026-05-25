@@ -3,9 +3,8 @@
 {% else %}
   {% assign postlist = site.posts | sort: 'date' | reverse %}
 {% endif %}
-
 {% if postlist.size == 0 %}
-  <p class="post-list-empty">No posts yet. Check back soon, or browse my <a href="{{ '/projects/' | relative_url }}">projects</a>.</p>
+<p class="post-list-empty">No posts yet. Check back soon, or browse my <a href="{{ '/projects/' | relative_url }}">projects</a>.</p>
 {% else %}
   {% assign current_year = '' %}
   {% assign list_open = false %}

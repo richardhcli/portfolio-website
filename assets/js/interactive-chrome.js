@@ -3,7 +3,6 @@
 const INTERACTIVE_CHROME_SELECTOR = [
   ".navbar-brand.title",
   ".post-title",
-  ".header-bar h1",
   ".card-title",
   ".profile-sidebar__name",
   "#search-toggle",

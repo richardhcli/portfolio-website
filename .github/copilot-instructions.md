@@ -92,7 +92,7 @@ bundle exec jekyll serve --port 4000   # Run at http://localhost:4000
 - `_data/socials.yml` – Social links + `cv_pdf` for search
 - `_includes/` – `profile_sidebar.liquid`, `project_timeline.liquid`, `blog_list_by_year.liquid`, `cv_pdf_url.liquid`
 - `_layouts/` – `default.liquid`, `home.liquid`, `about.liquid`, `post.liquid`
-- `_pages/` – `home.md`, `about.md`, `projects.md`, `blog.md`, `cv.md` (navbar PDF stub)
+- `_pages/` – `home.md`, `about.md`, `projects.html`, `blog.html`, `cv.md` (navbar PDF stub). Use `.html` for Liquid-heavy pages; `.md` for Markdown body content.
 - `_posts/` – Blog posts (`YYYY-MM-DD-title.md`)
 - `_projects/` – Project entries (rendered on timeline)
 - `_sass/` – `_project-timeline.scss`, `_sidebar.scss`, themes, etc.

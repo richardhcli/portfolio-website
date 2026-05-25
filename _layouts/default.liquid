@@ -28,18 +28,18 @@
           <div class="container mt-5 site-main__content">
             {% if page.toc and page.toc.sidebar %}
               {% if page.toc.sidebar == 'right' %}
-                <div class="row">
-                  <div class="col-lg-9">{{ content }}</div>
-                  <div class="col-lg-3">
+                <div class="row page-with-year-toc">
+                  <div class="col-12 col-lg page-content-col order-lg-1">{{ content }}</div>
+                  <div class="col-12 col-lg-auto toc-sidebar-col order-lg-2">
                     <nav id="toc-sidebar" class="sticky-top"></nav>
                   </div>
                 </div>
               {% else %}
-                <div class="row">
-                  <div class="col-lg-3">
+                <div class="row page-with-year-toc">
+                  <div class="col-12 col-lg-auto toc-sidebar-col">
                     <nav id="toc-sidebar" class="sticky-top"></nav>
                   </div>
-                  <div class="col-lg-9">{{ content }}</div>
+                  <div class="col-12 col-lg page-content-col">{{ content }}</div>
                 </div>
               {% endif %}
             {% else %}
@@ -53,18 +53,18 @@
       <div class="container mt-5" role="main">
         {% if page.toc and page.toc.sidebar %}
           {% if page.toc.sidebar == 'right' %}
-            <div class="row">
-              <div class="col-sm-9">{{ content }}</div>
-              <div class="col-sm-3">
+            <div class="row page-with-year-toc">
+              <div class="col-12 col-lg page-content-col order-lg-1">{{ content }}</div>
+              <div class="col-12 col-lg-auto toc-sidebar-col order-lg-2">
                 <nav id="toc-sidebar" class="sticky-top"></nav>
               </div>
             </div>
           {% else %}
-            <div class="row">
-              <div class="col-sm-3">
+            <div class="row page-with-year-toc">
+              <div class="col-12 col-lg-auto toc-sidebar-col">
                 <nav id="toc-sidebar" class="sticky-top"></nav>
               </div>
-              <div class="col-sm-9">{{ content }}</div>
+              <div class="col-12 col-lg page-content-col">{{ content }}</div>
             </div>
           {% endif %}
         {% else %}

@@ -17,8 +17,8 @@ What is the best way to do this?
 | URL          | Source                              | Notes                                                         |
 | ------------ | ----------------------------------- | ------------------------------------------------------------- |
 | `/`          | `_pages/home.md`                    | Featured project, latest posts, link to About — not in navbar |
-| `/projects/` | `_pages/projects.md` + `_projects/` | Vertical **project log** timeline (animated rail, year TOC)   |
-| `/blog/`     | `_pages/blog.md` + `_posts/`        | Technical writing; posts grouped by year (year TOC)           |
+| `/projects/` | `_pages/projects.html` + `_projects/` | Vertical **project log** timeline (animated rail, year TOC)   |
+| `/blog/`     | `_pages/blog.html` + `_posts/`        | Technical writing; posts grouped by year (year TOC)           |
 | `/about/`    | `_pages/about.md`                   | Intro, explore links, contact (orange nav highlight)          |
 | CV (PDF)     | `_config.yml` → `cv_pdf`            | External PDF link (navbar, sidebar, search); no `/cv/` page   |
 
