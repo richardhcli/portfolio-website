@@ -9,7 +9,6 @@ Here we will give you some tips on how to customize the website. One important t
 <!--ts-->
 
 - [Customize](#customize)
-  - [Portfolio site overview](#portfolio-site-overview)
   - [Project structure](#project-structure)
   - [Configuration](#configuration)
   - [GitHub Copilot Customization Agent](#github-copilot-customization-agent)
@@ -26,7 +25,6 @@ Here we will give you some tips on how to customize the website. One important t
     - [Key Integration Points](#key-integration-points)
   - [Modifying the CV information](#modifying-the-cv-information)
     - [PDF-only CV (this fork)](#pdf-only-cv-this-fork)
-    - [Upstream al-folio CV formats (not used here)](#upstream-al-folio-cv-formats-not-used-here)
   - [Modifying the user and repository information](#modifying-the-user-and-repository-information)
     - [Configuring external service URLs](#configuring-external-service-urls)
   - [Creating new pages](#creating-new-pages)
@@ -63,7 +61,7 @@ Here we will give you some tips on how to customize the website. One important t
     - [How it works](#how-it-works)
     - [Configuration](#configuration-1)
     - [Disable related posts for a specific post](#disable-related-posts-for-a-specific-post)
-    - [Additional configuration in \_config.yml](#additional-configuration-in-_configyml)
+    - [Additional configuration in _config.yml](#additional-configuration-in-_configyml)
   - [Managing publication display](#managing-publication-display)
   - [Adding a Google Calendar](#adding-a-google-calendar)
     - [Basic usage](#basic-usage)

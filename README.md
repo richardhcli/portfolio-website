@@ -61,8 +61,8 @@ Run the test yourself: [Google Lighthouse PageSpeed Insights](https://pagespeed.
 
 <!--ts-->
 
-- [al-folio](#al-folio)
-  - [User community](#user-community)
+- [Richard Li Portfolio](#richard-li-portfolio)
+    - [Site map](#site-map)
   - [Lighthouse PageSpeed Insights](#lighthouse-pagespeed-insights)
     - [Desktop](#desktop)
     - [Mobile](#mobile)
