@@ -12,6 +12,7 @@ Content is organized by type:
 - **\_pages/** – Static pages (about, CV, blog/projects index, etc.)
 
 **Page file extension:** Use `.md` for Markdown body content; use `.html` when the page is mostly Liquid/HTML (e.g. `_pages/blog.html`, `_pages/projects.html`). `.md` runs through kramdown after Liquid and can treat indented HTML as code blocks.
+
 - **\_posts/** – Blog posts (format: `YYYY-MM-DD-title.md`)
 - **\_projects/** – Project showcase entries
 

@@ -17,14 +17,7 @@ const INTERACTIVE_CHROME_SELECTOR = [
 
 const CLICK_FLASH_MS = 150;
 
-const EXCLUDED_ANCESTORS = [
-  "pre",
-  "code",
-  ".nav-link-highlight",
-  "blockquote.block-tip",
-  "blockquote.block-warning",
-  "blockquote.block-danger",
-];
+const EXCLUDED_ANCESTORS = ["pre", "code", ".nav-link-highlight", "blockquote.block-tip", "blockquote.block-warning", "blockquote.block-danger"];
 
 let activeElement = null;
 

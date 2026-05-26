@@ -34,7 +34,7 @@ const corruptions = [...postCss.matchAll(corruptionRe)];
 if (corruptions.length > 0) {
   fail(
     `Minifier corruption: found ${corruptions.length} broken CSS custom property reference(s) (e.g. "var( - - foo)"). ` +
-      `Ensure compress_css is false in _config.yml jekyll-minifier.`,
+      `Ensure compress_css is false in _config.yml jekyll-minifier.`
   );
 } else {
   pass("No minifier corruption in CSS custom properties.");
@@ -50,7 +50,10 @@ if (existsSync(PRE)) {
   function extractSelectors(css) {
     const map = new Map();
     for (const m of css.matchAll(displayNoneRe)) {
-      const selectors = m[1].trim().split(",").map((s) => s.trim());
+      const selectors = m[1]
+        .trim()
+        .split(",")
+        .map((s) => s.trim());
       for (const sel of selectors) {
         map.set(sel, (map.get(sel) || 0) + 1);
       }
@@ -66,9 +69,7 @@ if (existsSync(PRE)) {
     // A selector is "broadened" if it appears in post-purge but not pre-purge,
     // while a more specific version (containing the selector) existed in pre-purge
     if (!preSelectors.has(sel)) {
-      const wasNested = [...preSelectors.keys()].some(
-        (preSel) => preSel !== sel && preSel.includes(sel) && preSel.length > sel.length,
-      );
+      const wasNested = [...preSelectors.keys()].some((preSel) => preSel !== sel && preSel.includes(sel) && preSel.length > sel.length);
       if (wasNested) broadened.push(sel);
     }
   }
@@ -78,15 +79,13 @@ if (existsSync(PRE)) {
       `PurgeCSS selector broadening: ${broadened.length} selector(s) with display:none ` +
         `appear simpler post-purge than pre-purge:\n` +
         broadened.map((s) => `  - "${s}"`).join("\n") +
-        `\nAdd affected classes to the PurgeCSS safelist or use conditional HTML instead.`,
+        `\nAdd affected classes to the PurgeCSS safelist or use conditional HTML instead.`
     );
   } else {
     pass("No PurgeCSS selector broadening detected.");
   }
 } else {
-  console.log(
-    `[SKIP] Pre-purge backup not found (${PRE}), skipping selector broadening check.`,
-  );
+  console.log(`[SKIP] Pre-purge backup not found (${PRE}), skipping selector broadening check.`);
 }
 
 if (failed) {

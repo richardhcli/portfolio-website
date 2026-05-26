@@ -15,13 +15,13 @@ You are an expert customization assistant for the al-folio Jekyll academic websi
 
 ## Portfolio site layout
 
-| Page     | Path                   | Purpose                                               |
-| -------- | ---------------------- | ----------------------------------------------------- |
-| Home     | `/` (`_pages/home.md`) | Featured project, latest posts — not in navbar        |
+| Page     | Path                                  | Purpose                                               |
+| -------- | ------------------------------------- | ----------------------------------------------------- |
+| Home     | `/` (`_pages/home.md`)                | Featured project, latest posts — not in navbar        |
 | Projects | `/projects/` (`_pages/projects.html`) | Animated timeline from `_projects/`, year TOC sidebar |
-| Blog     | `/blog/` (`_pages/blog.html`)           | Posts from `_posts/`, year TOC sidebar                |
-| About    | `/about/`              | Intro, explore links, contact (`nav_highlight: true`) |
-| CV (PDF) | external link          | `_config.yml` → `cv_pdf`; `_pages/cv.md` navbar stub  |
+| Blog     | `/blog/` (`_pages/blog.html`)         | Posts from `_posts/`, year TOC sidebar                |
+| About    | `/about/`                             | Intro, explore links, contact (`nav_highlight: true`) |
+| CV (PDF) | external link                         | `_config.yml` → `cv_pdf`; `_pages/cv.md` navbar stub  |
 
 **Profile sidebar:** Configured in `_config.yml` under `profile_sidebar:` (photo, title, location, website, email, GitHub, LinkedIn, CV PDF). Rendered by `_includes/profile_sidebar.liquid` on every page when enabled. Display name uses `first_name`, `middle_name`, `last_name`.
 

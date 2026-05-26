@@ -42,6 +42,7 @@
 
 1. Open `_config.yml` in your repository
 2. Update these fields:
+
    ```yaml
    title: My Portfolio
    first_name: Your
@@ -60,6 +61,7 @@
      github_username: your-github-username
      linkedin_username: your-linkedin-username
    ```
+
 3. Replace `assets/img/prof_pic.jpg` with your photo
 4. Click **Commit changes** (at the bottom of the page)
 

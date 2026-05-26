@@ -14,13 +14,13 @@ What is the best way to do this?
 
 ## Site structure
 
-| URL          | Source                              | Notes                                                         |
-| ------------ | ----------------------------------- | ------------------------------------------------------------- |
-| `/`          | `_pages/home.md`                    | Featured project, latest posts, link to About — not in navbar |
+| URL          | Source                                | Notes                                                         |
+| ------------ | ------------------------------------- | ------------------------------------------------------------- |
+| `/`          | `_pages/home.md`                      | Featured project, latest posts, link to About — not in navbar |
 | `/projects/` | `_pages/projects.html` + `_projects/` | Vertical **project log** timeline (animated rail, year TOC)   |
 | `/blog/`     | `_pages/blog.html` + `_posts/`        | Technical writing; posts grouped by year (year TOC)           |
-| `/about/`    | `_pages/about.md`                   | Intro, explore links, contact (orange nav highlight)          |
-| CV (PDF)     | `_config.yml` → `cv_pdf`            | External PDF link (navbar, sidebar, search); no `/cv/` page   |
+| `/about/`    | `_pages/about.md`                     | Intro, explore links, contact (orange nav highlight)          |
+| CV (PDF)     | `_config.yml` → `cv_pdf`              | External PDF link (navbar, sidebar, search); no `/cv/` page   |
 
 **Profile sidebar:** Left column on all pages when `profile_sidebar.enabled: true`. Configured in `_config.yml` under `profile_sidebar:` (photo, title, location, contact links). Global résumé PDF URL: top-level `cv_pdf` in `_config.yml`. Name comes from `first_name`, `middle_name`, `last_name`. Template: `_includes/profile_sidebar.liquid`.
 

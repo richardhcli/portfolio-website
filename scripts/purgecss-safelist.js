@@ -11,8 +11,7 @@ const { globSync } = require("glob");
 
 const JS_GLOBS = ["assets/js/**/*.js", "_scripts/**/*.js"];
 
-const CLASS_LIST_RE =
-  /classList\.(add|remove|toggle)\(\s*["']([a-zA-Z0-9_-]+)["']/g;
+const CLASS_LIST_RE = /classList\.(add|remove|toggle)\(\s*["']([a-zA-Z0-9_-]+)["']/g;
 const CLASS_NAME_ASSIGN_RE = /className\s*[+=]\s*["']([a-zA-Z0-9_ -]+)["']/g;
 
 function extractJsClasses(root) {
@@ -35,15 +34,7 @@ function buildSafelist(root) {
 
   return {
     standard: jsClasses,
-    deep: [
-      /-visible$/,
-      /-active$/,
-      /-open$/,
-      /-show$/,
-      /^click-/,
-      /^unloaded$/,
-      /^is-/,
-    ],
+    deep: [/-visible$/, /-active$/, /-open$/, /-show$/, /^click-/, /^unloaded$/, /^is-/],
     greedy: [/:last-child/, /:first-child/, /:nth-/, /:has\(/],
   };
 }
