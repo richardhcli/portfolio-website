@@ -22,7 +22,7 @@ This guide covers common issues and their solutions. For more information, see [
     - [Images not loading](#images-not-loading)
   - [Configuration Issues](#configuration-issues)
     - [YAML syntax errors](#yaml-syntax-errors)
-    - [Changes to \_config.yml not appearing locally](#changes-to-_configyml-not-appearing-locally)
+    - [Changes to _config.yml not appearing locally](#changes-to-_configyml-not-appearing-locally)
     - [Feed (RSS/Atom) not working](#feed-rssatom-not-working)
     - [Search not working](#search-not-working)
   - [Feature-Specific Issues](#feature-specific-issues)
