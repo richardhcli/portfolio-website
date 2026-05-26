@@ -5,12 +5,30 @@ permalink: /about/
 nav: true
 nav_order: 3
 nav_highlight: true
-description: Machine learning architecture, applied psychology, and pattern recognition
+description: A little bit about me
 ---
 
-I'm **Richard Li**, focused on machine learning architecture — the intersection of applied psychology, applied philosophy, and pattern recognition/optimization.
+Hi! 
+Richard Li here. 
 
-I'm especially interested in ML from the statistics side: end-to-end pipelines for user experience, the compute that makes inference possible, and the cost functions of both the model and the user (which, in practice, are converging).
+## My interests
+
+There's really only one thing that interests me technically: ***machine learning architecture***, and improving automated thinking processes. 
+Specifically, these factors of ML: 
+* Applied psychology: proving how we think mathematically, instead of just emperical observation. What is intelligence? 
+* Efficiency: improving how we reason and learn by knowing exactly what we are working with. How can we grow? 
+* Potential: intelligence is arguably the most important quality we have. What insights can we do with more? 
+
+To this end, I am interested in the following implementations: 
+* Computer Science: Developing algorithms to encapture and prove the methods of reasoning and deduction. 
+* Statistics: Using mathematics as a basis for philosophical proofs on human behavior, on bot the micro (individual) and macro (society) levels. 
+* Finances: it seems like this is the highest ROI for computation? 
+
+Some other adjacent fields that provoke my interest: 
+* Applets: end-to-end pipelines for user experience; workflow optimizations
+* Computur Engineering: designing the compute that makes training and inference possible
+
+If you share these interests, feel free to send me an email!
 
 ## Explore this site
 
