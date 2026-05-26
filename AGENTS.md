@@ -65,8 +65,9 @@ npm run preview:production   # http://localhost:8081
 ### Pre-Commit Checklist
 
 1. **Format:** `npx prettier . --write`
-2. **Dev verify:** `docker compose up` — check http://localhost:8080
-3. **Production verify (if CSS/JS/Liquid changed):** run Workflow 2 above
+2. **Prettier CI check:** `npx prettier . --check` (must pass — same command as `.github/workflows/prettier.yml`)
+3. **Dev verify:** `docker compose up` — check http://localhost:8080
+4. **Production verify (if CSS/JS/Liquid changed):** run Workflow 2 above
 
 ## Critical Configuration
 
