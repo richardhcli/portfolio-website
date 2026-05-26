@@ -18,23 +18,23 @@ assets/css/main.scss      Compiled to assets/css/main.css
 
 ## File reference
 
-| File | Purpose |
-| --- | --- |
-| [`_sass/_variables.scss`](_sass/_variables.scss) | Single source of truth for palette hex values (Dracula, Alucard, functional UI colors) |
-| [`_sass/_themes.scss`](_sass/_themes.scss) | Maps SCSS tokens to `--global-*` and `--pygments-*` CSS variables for light (`:root`) and dark (`html[data-theme="dark"]`) |
-| [`_sass/_pygments.scss`](_sass/_pygments.scss) | Code block syntax highlighting; uses `var(--pygments-*)` only |
-| [`_sass/_interactive-chrome.scss`](_sass/_interactive-chrome.scss) | Transient hover/click colors on titles and chrome |
-| [`assets/css/main.scss`](assets/css/main.scss) | Entry point that `@use`s all partials |
-| [`assets/js/theme.js`](assets/js/theme.js) | Light/dark toggle (stores preference in `localStorage.theme`) |
+| File                                                               | Purpose                                                                                                                    |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| [`_sass/_variables.scss`](_sass/_variables.scss)                   | Single source of truth for palette hex values (Dracula, Alucard, functional UI colors)                                     |
+| [`_sass/_themes.scss`](_sass/_themes.scss)                         | Maps SCSS tokens to `--global-*` and `--pygments-*` CSS variables for light (`:root`) and dark (`html[data-theme="dark"]`) |
+| [`_sass/_pygments.scss`](_sass/_pygments.scss)                     | Code block syntax highlighting; uses `var(--pygments-*)` only                                                              |
+| [`_sass/_interactive-chrome.scss`](_sass/_interactive-chrome.scss) | Transient hover/click colors on titles and chrome                                                                          |
+| [`assets/css/main.scss`](assets/css/main.scss)                     | Entry point that `@use`s all partials                                                                                      |
+| [`assets/js/theme.js`](assets/js/theme.js)                         | Light/dark toggle (stores preference in `localStorage.theme`)                                                              |
 
 Legacy plain-CSS pygments files (`assets/css/jekyll-pygments-themes-*.css`) are **not used**. Syntax highlighting is bundled in `main.css` and switches automatically with dark mode.
 
 ## Light and dark modes
 
-| Mode | Spec variant | Activated when |
-| --- | --- | --- |
+| Mode  | Spec variant    | Activated when                                                      |
+| ----- | --------------- | ------------------------------------------------------------------- |
 | Light | Alucard Classic | `html[data-theme="light"]` or default before JS runs on first visit |
-| Dark | Dracula Classic | `html[data-theme="dark"]` |
+| Dark  | Dracula Classic | `html[data-theme="dark"]`                                           |
 
 First-time visitors default to **dark mode**. The navbar button toggles light ↔ dark only (no system/auto mode).
 
@@ -63,16 +63,16 @@ Tokens: `$alucard-orange` (light), `$dracula-orange` (dark) → `--global-nav-hi
 
 Token roles in `_themes.scss`:
 
-| CSS variable | Dracula role | Example tokens |
-| --- | --- | --- |
-| `--pygments-keyword` | Pink | `if`, `class`, tags |
-| `--pygments-function` | Green | function names |
-| `--pygments-class` | Cyan | types, classes, regex |
-| `--pygments-string` | Yellow | string literals |
-| `--pygments-number` | Orange | numbers, constants |
-| `--pygments-comment` | Comment gray | `//`, `#` |
-| `--pygments-error` | Red | errors |
-| `--pygments-builtin` | Purple (italic) | `self`, builtins |
+| CSS variable          | Dracula role    | Example tokens        |
+| --------------------- | --------------- | --------------------- |
+| `--pygments-keyword`  | Pink            | `if`, `class`, tags   |
+| `--pygments-function` | Green           | function names        |
+| `--pygments-class`    | Cyan            | types, classes, regex |
+| `--pygments-string`   | Yellow          | string literals       |
+| `--pygments-number`   | Orange          | numbers, constants    |
+| `--pygments-comment`  | Comment gray    | `//`, `#`             |
+| `--pygments-error`    | Red             | errors                |
+| `--pygments-builtin`  | Purple (italic) | `self`, builtins      |
 
 Mapping from variables to roles is in `_themes.scss` under the `--pygments-*` block. Selector → role mapping is in `_pygments.scss`.
 
