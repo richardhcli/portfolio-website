@@ -162,11 +162,12 @@ bundle exec jekyll build
 # Deploy happens automatically via GitHub Actions on push to main branch
 ```
 
-**Code formatting:**
+**Code formatting (run before every commit):**
 
 ```bash
-# Format code with Prettier
-npx prettier . --write
+npm install              # first time only
+npx prettier . --write   # fix formatting
+npx prettier . --check   # final test — must pass (matches CI)
 ```
 
 ## Common Customization Tasks
@@ -419,7 +420,14 @@ Always guide users to test changes locally before pushing to GitHub:
    - CV/Resume – Check the CV page and about page
    - Social links – Check header and footer
 
-6. **Only then push to GitHub** – Once everything looks good locally, commit and push:
+6. **Run Prettier check** – Match the CI formatter before you commit:
+   ```bash
+   npx prettier . --write
+   npx prettier . --check
+   ```
+   `--check` must exit successfully. On Windows, ignore line-ending-only warnings if `git diff` shows no substantive changes.
+
+7. **Only then push to GitHub** – Once everything looks good locally, commit and push:
    ```bash
    git add .
    git commit -m "Describe your changes"

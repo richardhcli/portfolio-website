@@ -139,8 +139,9 @@ When making changes:
 **You must run these locally before pushing:**
 
 1. **Prettier formatting (mandatory):** `npx prettier . --write`
-2. **Dev verify:** `docker compose up` → http://localhost:8080
-3. **Production verify (if CSS/JS/Liquid changed):**
+2. **Prettier CI check (mandatory):** `npx prettier . --check` — must pass; same command as `.github/workflows/prettier.yml`
+3. **Dev verify:** `docker compose up` → http://localhost:8080
+4. **Production verify (if CSS/JS/Liquid changed):**
 
 ```bash
 # Docker (no local Ruby/Node needed):
@@ -177,11 +178,13 @@ npm run build:production && npm run preview:production
 ### Prettier Formatting Failures
 
 - **Problem:** PR fails prettier check after local builds passed
-- **Solution:** Run prettier before committing:
+- **Solution:** Run prettier before committing, then verify with the CI command:
   ```bash
   npx prettier . --write
+  npx prettier . --check   # must pass before commit
   git add . && git commit -m "Format code with prettier"
   ```
+- **Windows:** `--check` may warn on line endings (CRLF vs LF) without real content changes; trust `git diff` and CI on Linux for the final verdict.
 
 ### Port 8080 or 4000 Already in Use
 

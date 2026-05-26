@@ -245,7 +245,8 @@ The Prettier formatter applies to markdown files:
 **Always run before committing:**
 
 ```bash
-npx prettier --write .
+npx prettier . --write   # fix formatting
+npx prettier . --check   # final test — must pass (matches CI)
 ```
 
 ## Trust These Instructions

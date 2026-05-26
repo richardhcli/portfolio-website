@@ -190,7 +190,7 @@ Files in `_scripts/` are **excluded from Prettier formatting** (defined in `.pre
 - Follow existing code style in the file (indentation, spacing, quotes)
 - Maintain readability for Liquid + JavaScript mixed code
 - Do NOT run Prettier on the `_scripts/` directory
-- **DO run Prettier on the rest of the project** when making other changes: `npx prettier . --write`
+- **DO run Prettier on the rest of the project** when making other changes: `npx prettier . --write`, then `npx prettier . --check` before committing
 
 ## Validation & Testing
 

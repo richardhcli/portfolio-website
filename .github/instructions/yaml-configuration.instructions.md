@@ -193,7 +193,8 @@ Update these in `_config.yml`:
 
    ```bash
    npx prettier _config.yml _data/ --check
-   npx prettier . --write  # Fix formatting
+   npx prettier . --write   # fix formatting
+   npx prettier . --check     # final test before commit
    ```
 
 3. **Visual verification:**

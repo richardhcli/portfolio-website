@@ -74,7 +74,13 @@ We implemented support for [Prettier code formatting](https://prettier.io/) in [
 
 - if you are running locally with `Docker` and using [development containers](https://github.com/alshedivat/al-folio/blob/main/INSTALL.md#local-setup-with-development-containers), `Prettier` is already included
 - if you don't use `Docker`, it is simple to integrate it with your preferred IDE using an [extension](https://prettier.io/docs/en/editors)
-- if you want to run it manually, you can follow the first 2 steps in [this tutorial](https://george-gca.github.io/blog/2023/slidev_for_non_web_devs/) (`Installing node version manager (nvm)` and `Installing Node (latest version)`), then, install it using `npm install prettier` inside the project directory, or install it globally on your computer using `npm install -g prettier`. To run `Prettier` on your current directory use `npx prettier . --write`.
+- if you want to run it manually, install Node.js, then from the project directory run:
+  ```bash
+  npm install
+  npx prettier . --write   # fix formatting
+  npx prettier . --check   # final test before commit (same as CI)
+  ```
+  `--check` must pass before you push. On Windows, line-ending warnings (CRLF vs LF) are usually harmless if `git diff` shows no real content changes; CI runs on Linux and is the source of truth.
 
 You can also disable it for your repo. For this, just delete the file [.github/workflows/prettier.yml](https://github.com/alshedivat/al-folio/blob/main/.github/workflows/prettier.yml).
 

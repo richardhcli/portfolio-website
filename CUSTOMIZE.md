@@ -286,7 +286,7 @@ Understanding al-folio's technology stack will help you better customize and ext
 
 - **GitHub Pages**: Free hosting for your static website built by Jekyll
 - **Docker**: Optional containerization for local development (provides a consistent environment across different machines)
-- **Prettier**: Code formatter for Markdown, YAML, and Liquid files to maintain consistent formatting
+- **Prettier**: Code formatter for Markdown, YAML, and Liquid files. Before committing, run `npx prettier . --write` then `npx prettier . --check` (see [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md#before-committing)).
 
 ### Key Integration Points
 

@@ -284,7 +284,7 @@ For configuration details, see [Related posts](CUSTOMIZE.md#related-posts) in [C
 
 Currently, we run some checks to ensure that the code quality and generated site are good. The checks are done using GitHub Actions and the following tools:
 
-- [Prettier](https://prettier.io/) - check if the formatting of the code follows the style guide
+- [Prettier](https://prettier.io/) - check if the formatting of the code follows the style guide. Before committing, run `npx prettier . --write` then `npx prettier . --check` (see [.github/GIT_WORKFLOW.md](.github/GIT_WORKFLOW.md#before-committing))
 - [lychee](https://lychee.cli.rs/) - check for broken links
 - [Axe](https://github.com/dequelabs/axe-core) (need to run manually) - do some accessibility testing
 

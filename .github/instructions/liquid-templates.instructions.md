@@ -42,7 +42,7 @@ Prettier with `@shopify/prettier-plugin-liquid` enforces formatting:
 - Single quotes around strings in Liquid tags
 - Consistent spacing
 - Indentation with 2 spaces
-- Run `npx prettier . --write` before committing
+- Run `npx prettier . --write` before committing, then `npx prettier . --check` to match CI
 
 ## Common Modification Patterns
 
@@ -72,7 +72,8 @@ Prettier with `@shopify/prettier-plugin-liquid` enforces formatting:
 
    ```bash
    npx prettier _includes/ _layouts/ --check
-   npx prettier . --write  # Fix formatting
+   npx prettier . --write   # fix formatting
+   npx prettier . --check     # final test before commit
    ```
 
 2. **Build test:**

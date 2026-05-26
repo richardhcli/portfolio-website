@@ -32,6 +32,20 @@ config: Enable blog section in _config.yml
 chore: Update Jekyll dependencies with bundle update --all
 ```
 
+## Before Committing
+
+Run the same Prettier check that CI uses (`.github/workflows/prettier.yml`) so formatting failures are caught locally:
+
+```bash
+npm install   # first time only; installs prettier from package.json
+npx prettier . --write   # fix formatting
+npx prettier . --check   # final test — must pass before you commit
+```
+
+If `--check` reports issues after `--write`, review the diff, fix any remaining problems, and run `--check` again.
+
+**Windows note:** `--check` may warn on many files due to CRLF vs LF line endings in the working tree. Those warnings do not affect CI (Linux). Focus on files with real formatting diffs in `git diff`, or run Prettier inside Docker/WSL for exact CI parity.
+
 ## Staging Changes
 
 **Always `git add` files explicitly.** Do not stage everything with `git add .` unless you are certain of what's being committed. Check `git status` first to review your changes.
