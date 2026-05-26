@@ -29,7 +29,7 @@ ninja.data = [{
           },
         },{id: "nav-about",
           title: "About",
-          description: "Machine learning architecture, applied psychology, and pattern recognition",
+          description: "A little bit about me",
           section: "Navigation",
           handler: () => {
             
